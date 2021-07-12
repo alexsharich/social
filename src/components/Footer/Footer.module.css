@@ -1,0 +1,7 @@
+.footer {
+    grid-area: f;
+    background-color: rgba(41, 41, 41, 0.938);
+    height: auto;
+    color: white;
+    text-align: center;
+  }

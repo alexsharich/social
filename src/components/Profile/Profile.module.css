@@ -1,0 +1,7 @@
+.content {
+  grid-area: c;
+  background-color: rgba(41, 41, 41, 0.986);
+  }
+.content img {
+  opacity: .7 ;
+}

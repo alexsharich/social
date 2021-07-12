@@ -1,0 +1,21 @@
+.header {
+  grid-area: h;
+  background-color: rgba(41, 41, 41, 0.938);
+}
+.header img {
+  width: 40px;
+  height: 40px;
+  transition: all .5s ease;
+  animation: rotate 10s linear infinite;
+  margin: 20px 80px;
+}
+
+@keyframes rotate {
+  from {
+    transform: rotate(360deg);
+  }
+}
+
+.item {
+  color: white;
+}

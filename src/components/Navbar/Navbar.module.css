@@ -1,0 +1,15 @@
+.nav {
+  grid-area: n;
+  background-color: rgba(41, 41, 41, 0.938);
+  text-align: center;
+  }
+  .item {
+    color: white;
+    font-size: 24px;
+  }
+.active {
+    color:gold;
+  }
+  .navPages {
+   margin-top: 50px;
+  }
