@@ -1,3 +1,18 @@
 .createPostButton {
     margin-right: 10px;
+    background-color: rgb(127, 252, 116);
+}
+.removePostButton{
+    background-color: rgb(252, 116, 116);
+}
+.posts {
+    margin: 10px;
+}
+.createTextPost {
+    margin: 10px;
+}
+.myPostName {
+    color: rgb(108, 92, 252);
+    font-size: 25px;
+    margin: 30px;
 }

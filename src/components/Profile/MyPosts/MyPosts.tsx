@@ -14,8 +14,6 @@ const MyPosts = () => {
                 <button className={s.createPostButton}>Add Post</button>
                 <button className={s.removePostButton}>Remove</button>
                 </div>
-              
-
             </div >
             <div className={s.posts}>
                 <Post message='Hello, how are you' likeCounter='20'/>

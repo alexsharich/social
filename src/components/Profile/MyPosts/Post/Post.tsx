@@ -9,10 +9,10 @@ type MessageType = {
 const Post: React.FC<MessageType> = (props) => {
     return (
         <div className={s.item}>
-            <div>
+            <div className={s.postAva}>
                 <img src='https://yt3.ggpht.com/ytc/AKedOLSuRmw4hrGnwvc9yQZ3J0unZH_lXHQY3joTHb86rQ=s900-c-k-c0x00ffffff-no-rj'></img>
             </div>
-            <div>
+            <div className={s.postMessage}>
                 {props.message}
             </div>
             <div>
