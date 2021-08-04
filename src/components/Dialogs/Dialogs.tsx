@@ -1,52 +1,28 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
-import { isPropertySignature } from "typescript";
+import { StateDataType } from "../../state/state";
+
+import DialogItem from "./DialogItem/DialogItem";
 import s from './Dialogs.module.css'
-
-type PropsMessageType = {
-    message: string
-}
-type PropsDialogItemType = {
-    name: string
-    id: string
-}
+import Message from "./Message/Message";
 
 
+const Dialogs = (props: StateDataType) => {
 
-const DialogItem = (props: PropsDialogItemType) => {
-    let path = '/dialogs/' + props.id;
-    return (
-        <div className={s.dialog + ' ' + s.active}>
-                    <NavLink to={path}>{props.name}</NavLink>
-                </div>
-    )
-}
+    let dialogsElement = props.state.dialogsData
+        .map(d => <DialogItem name={d.name} id={d.id} />)
+    debugger
+    let messagesElements = props.state.messagesData
+        .map(m => <Message message={m.message} />)
 
-const Message = (props: PropsMessageType) => {
-    return (
-        <div className={s.message}>
-            {props.message}
-        </div>
-    )
-}
-
-const Dialogs = () => {
     return (
         <div className={s.dialogs}>
             <div className={s.dialogsItems}>
-            <DialogItem name='Sasha' id='1'/>
-            <DialogItem name='Pasha' id='2'/>
-            <DialogItem name='Dmitriy' id='3'/>
-            <DialogItem name='Kostya' id='4'/>
-            <DialogItem name='Sasha' id='5'/>
-                
+                {dialogsElement}
+
             </div>
             <div className={s.messages}>
-                <Message message='Hello' />
-                <Message message='Yes' />
-                <Message message='Love' />
-                <Message message='Yo' />
-                <Message message='Yo' />
+                {messagesElements}
+
             </div>
         </div>
     )

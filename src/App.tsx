@@ -11,9 +11,21 @@ import Settings from './components/Settings/Settings';
 import Footer from './components/Footer/Footer';
 import Dialogs from './components/Dialogs/Dialogs';
 import { BrowserRouter, Route } from 'react-router-dom';
+import { StateDataType } from './state/state';
+import state from './state/state'
 
 
-function App() {
+//import {  DialogsPropsType, MessagesPropsType, PostsPropsType } from '.';
+
+/* type AppPropsType = {
+posts: PostsPropsType
+conversation: ConversationData
+} */
+//type AppPropsType = PostsPropsType & DialogsPropsType & MessagesPropsType
+
+
+function App(props: StateDataType) {
+
   return (
     <BrowserRouter>
       <div className="App">
@@ -21,11 +33,11 @@ function App() {
           <Header />
           <NavBar />
           <div className='app-wrapper-content'>
-            <Route exact path='/profile' component={Profile} />
-            <Route exact path='/dialogs' component={Dialogs} />
-            <Route exact path='/music' component={Music} />
-            <Route exact path='/news' component={News} />
-            <Route exact path='/settings' component={Settings} />
+            <Route exact path='/profile' render={() => <Profile state={state} />} />
+            <Route exact path='/dialogs' render={() => <Dialogs state={state}  />} />
+            <Route exact path='/music' render={() => <Music />} />
+            <Route exact path='/news' render={() => <News />} />
+            <Route exact path='/settings' render={() => <Settings />} />
           </div>
           <Footer />
         </div>
