@@ -8,17 +8,26 @@ import Post from './Post/Post'
 
 const MyPosts = (props: StateDataType) => {
 
+    let newPostElement = React.createRef<HTMLTextAreaElement>()
+    let postElement = props.state.profilePage.posts.map(p => <Post message={p.message} likeCounter={p.likesCount} />)
 
-    let postElement = props.state.posts.map(p => <Post message={p.message} likeCounter={p.likesCount} />)
+    let addPost = () => {
+     if(newPostElement.current){
+        props.addPost(newPostElement.current.value)
+        newPostElement.current.value = ''
+     }
+  
+    }
+
     return (
         < div >
             <div className={s.myPostName}>
                 My Posts
             </div>
             < div className={s.createTextPost}>
-                <textarea></textarea>
+                <textarea ref={newPostElement}></textarea>
                 <div className={s.textAreaButtons}>
-                    <button className={s.createPostButton}>Add Post</button>
+                    <button className={s.createPostButton} onClick={addPost}>Add Post</button>
                     <button className={s.removePostButton}>Remove</button>
                 </div>
             </div >
