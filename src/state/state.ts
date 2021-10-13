@@ -3,6 +3,7 @@ import { renderTree } from "../render"
 export type StateDataType = {
     state: StateType
     addPost: (message: string) => void
+    updateNewPostText:(newText:string) => void
 }
  export type StateType = {
     profilePage : PostsType
@@ -10,6 +11,7 @@ export type StateDataType = {
 }
 type PostsType = {
     posts: Array<PostType>
+    messageNewPostText: string
 }
 type DialogsDataType = {
     dialogsData: Array<DialogType>
@@ -35,7 +37,8 @@ let state = {
             { id: 1 , message: 'Hello, how are you', likesCount: '20' },
             { id: 2 , message: 'Don,t touch my dog', likesCount: '2' },
             { id: 3 , message: 'Hello, John', likesCount: '1000' },
-        ]
+        ],
+        messageNewPostText: ''
     },
     dialogsPage: {
         dialogsData: [
@@ -53,21 +56,23 @@ let state = {
             { id: 5, message: 'Yo' },
         ]
     },
-    sideBar: {}
-   
+    sideBar: {} 
 }
 
-export const addPost = (postText: string ) => {
+export const addPost = () => {
     const newPost: PostType = {
         id: new Date().getTime(),
-        message: postText,
+        message: state.profilePage.messageNewPostText,
         likesCount: '0',
     }
     state.profilePage.posts.push(newPost);
+    state.profilePage.messageNewPostText = ''
     renderTree(state)
 }
-
-
+export const updateNewPostText = (newText: string ) => {
+    state.profilePage.messageNewPostText = newText
+    renderTree(state)
+}
 
 export default state;
 

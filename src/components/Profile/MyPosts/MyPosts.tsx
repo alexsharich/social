@@ -1,22 +1,17 @@
-import React from 'react';
+import React, { ChangeEvent } from 'react';
 import { StateDataType } from '../../../state/state';
-
-
-
 import s from './MyPosts.module.css';
 import Post from './Post/Post'
 
 const MyPosts = (props: StateDataType) => {
 
-    let newPostElement = React.createRef<HTMLTextAreaElement>()
     let postElement = props.state.profilePage.posts.map(p => <Post message={p.message} likeCounter={p.likesCount} />)
 
     let addPost = () => {
-     if(newPostElement.current){
-        props.addPost(newPostElement.current.value)
-        newPostElement.current.value = ''
-     }
-  
+        props.addPost(props.state.profilePage.messageNewPostText)
+    }
+    const onPostChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
+        props.updateNewPostText(e.currentTarget.value)
     }
 
     return (
@@ -25,7 +20,9 @@ const MyPosts = (props: StateDataType) => {
                 My Posts
             </div>
             < div className={s.createTextPost}>
-                <textarea ref={newPostElement}></textarea>
+                <textarea
+                    onChange={onPostChange}
+                    value={props.state.profilePage.messageNewPostText} />
                 <div className={s.textAreaButtons}>
                     <button className={s.createPostButton} onClick={addPost}>Add Post</button>
                     <button className={s.removePostButton}>Remove</button>

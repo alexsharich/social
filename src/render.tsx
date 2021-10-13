@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import  { addPost, StateType } from './state/state';
+import  { addPost, StateType, updateNewPostText } from './state/state';
 
  
 
@@ -61,7 +61,7 @@ let posts = [
 export const renderTree =(state: StateType) => {
   ReactDOM.render(
     <React.StrictMode>
-      <App state={state} addPost={addPost}/>
+      <App state={state} addPost={addPost} updateNewPostText={updateNewPostText}/>
     </React.StrictMode>,
     document.getElementById('root')
   );

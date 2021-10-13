@@ -11,17 +11,8 @@ import Settings from './components/Settings/Settings';
 import Footer from './components/Footer/Footer';
 import Dialogs from './components/Dialogs/Dialogs';
 import { BrowserRouter, Route } from 'react-router-dom';
-import { StateDataType } from './state/state';
-
+import { StateDataType, updateNewPostText } from './state/state';
 import {addPost} from './state/state'
-
-//import {  DialogsPropsType, MessagesPropsType, PostsPropsType } from '.';
-
-/* type AppPropsType = {
-posts: PostsPropsType
-conversation: ConversationData
-} */
-//type AppPropsType = PostsPropsType & DialogsPropsType & MessagesPropsType
 
 
 function App(props: StateDataType) {
@@ -33,8 +24,10 @@ function App(props: StateDataType) {
           <Header />
           <NavBar />
           <div className='app-wrapper-content'>
-            <Route exact path='/profile' render={() => <Profile state={props.state} addPost={addPost}/>} />
-            <Route exact path='/dialogs' render={() => <Dialogs state={props.state} addPost={addPost} />} />
+            <Route exact path='/profile' render={() => <Profile state={props.state} 
+            addPost={addPost}
+            updateNewPostText={updateNewPostText}/>} />
+            <Route exact path='/dialogs' render={() => <Dialogs state={props.state} addPost={addPost} updateNewPostText={updateNewPostText} />} />
             <Route exact path='/music' render={() => <Music />} />
             <Route exact path='/news' render={() => <News />} />
             <Route exact path='/settings' render={() => <Settings />} />
@@ -45,8 +38,5 @@ function App(props: StateDataType) {
     </BrowserRouter>
   );
 }
-
-
-
 
 export default App;
