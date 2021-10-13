@@ -1,13 +1,15 @@
-import { renderTree } from "../render"
+let renderTree = () => {
+    console.log('state try to change')
+}
 
 export type StateDataType = {
     state: StateType
     addPost: (message: string) => void
-    updateNewPostText:(newText:string) => void
+    updateNewPostText: (newText: string) => void
 }
- export type StateType = {
-    profilePage : PostsType
-    dialogsPage: DialogsDataType 
+export type StateType = {
+    profilePage: PostsType
+    dialogsPage: DialogsDataType
 }
 type PostsType = {
     posts: Array<PostType>
@@ -15,12 +17,12 @@ type PostsType = {
 }
 type DialogsDataType = {
     dialogsData: Array<DialogType>
-    messagesData: Array<MessageType> 
+    messagesData: Array<MessageType>
 }
 type PostType = {
     id: number
     message: string
-    likesCount:  string
+    likesCount: string
 }
 type MessageType = {
     id: number
@@ -34,9 +36,9 @@ type DialogType = {
 let state = {
     profilePage: {
         posts: [
-            { id: 1 , message: 'Hello, how are you', likesCount: '20' },
-            { id: 2 , message: 'Don,t touch my dog', likesCount: '2' },
-            { id: 3 , message: 'Hello, John', likesCount: '1000' },
+            { id: 1, message: 'Hello, how are you', likesCount: '20' },
+            { id: 2, message: 'Don,t touch my dog', likesCount: '2' },
+            { id: 3, message: 'Hello, John', likesCount: '1000' },
         ],
         messageNewPostText: ''
     },
@@ -56,7 +58,7 @@ let state = {
             { id: 5, message: 'Yo' },
         ]
     },
-    sideBar: {} 
+    sideBar: {}
 }
 
 export const addPost = () => {
@@ -67,13 +69,16 @@ export const addPost = () => {
     }
     state.profilePage.posts.push(newPost);
     state.profilePage.messageNewPostText = ''
-    renderTree(state)
+    renderTree()
 }
-export const updateNewPostText = (newText: string ) => {
+export const updateNewPostText = (newText: string) => {
     state.profilePage.messageNewPostText = newText
-    renderTree(state)
+    renderTree()
 }
 
+export const subscribe = (observer: () => void) => {
+    renderTree = observer;
+}
 export default state;
 
 
