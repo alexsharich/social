@@ -5,10 +5,10 @@ import Post from './Post/Post'
 
 const MyPosts = (props: StateDataType) => {
 
-    let postElement = props.state.profilePage.posts.map(p => <Post message={p.message} likeCounter={p.likesCount} />)
+    let postElement = props._state.profilePage.posts.map(p => <Post message={p.message} likeCounter={p.likesCount} />)
 
     let addPost = () => {
-        props.addPost(props.state.profilePage.messageNewPostText)
+        props.addPost(props._state.profilePage.messageNewPostText)
     }
     const onPostChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
         props.updateNewPostText(e.currentTarget.value)
@@ -22,7 +22,7 @@ const MyPosts = (props: StateDataType) => {
             < div className={s.createTextPost}>
                 <textarea
                     onChange={onPostChange}
-                    value={props.state.profilePage.messageNewPostText} />
+                    value={props._state.profilePage.messageNewPostText} />
                 <div className={s.textAreaButtons}>
                     <button className={s.createPostButton} onClick={addPost}>Add Post</button>
                     <button className={s.removePostButton}>Remove</button>

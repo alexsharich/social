@@ -2,23 +2,26 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import reportWebVitals from './reportWebVitals';
-import state, { addPost, StateType, subscribe, updateNewPostText } from './state/state';
+//import state, { addPost, StateType, subscribe, updateNewPostText } from './state/state';
 import App from './App';
+import store, { StoreType } from './state/state';
 
-
+type PropsType = {
+    store: StoreType
+}
 
 export const renderTree = () => {
     ReactDOM.render(
         <React.StrictMode>
-            <App state={state} addPost={addPost} updateNewPostText={updateNewPostText} />
+            <App _state={store.getState()} addPost={store.addPost.bind(store)} updateNewPostText={store.updateNewPostText.bind(store)} />
         </React.StrictMode>,
         document.getElementById('root')
     );
 }
 
-renderTree()
-subscribe(renderTree)
 
+store.subscribe(renderTree)
+renderTree()
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))

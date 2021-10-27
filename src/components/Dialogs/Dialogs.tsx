@@ -8,10 +8,10 @@ import Message from "./Message/Message";
 
 const Dialogs = (props: StateDataType) => {
 
-    let dialogsElement = props.state.dialogsPage.dialogsData
+    let dialogsElement = props._state.dialogsPage.dialogsData
         .map(d => <DialogItem name={d.name} id={d.id} />)
     debugger
-    let messagesElements = props.state.dialogsPage.messagesData
+    let messagesElements = props._state.dialogsPage.messagesData
         .map(m => <Message message={m.message} />)
 
     let newMessageElement = React.createRef<HTMLTextAreaElement>()
