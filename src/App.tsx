@@ -26,9 +26,10 @@ function App(props: StateDataType) {
           <NavBar />
           <div className='app-wrapper-content'>
             <Route exact path='/profile' render={() => <Profile _state={props._state}
-              addPost={props.addPost}
-              updateNewPostText={props.updateNewPostText} />} />
-            <Route exact path='/dialogs' render={() => <Dialogs _state={props._state} addPost={props.addPost} updateNewPostText={props.updateNewPostText} />} />
+             /*  addPost={props.addPost}
+              updateNewPostText={props.updateNewPostText} */
+              dispatch={props.dispatch} />} />
+            <Route exact path='/dialogs' render={() => <Dialogs _state={props._state} /* addPost={props.addPost} updateNewPostText={props.updateNewPostText} */ dispatch={props.dispatch}/>} />
             <Route exact path='/music' render={() => <Music />} />
             <Route exact path='/news' render={() => <News />} />
             <Route exact path='/settings' render={() => <Settings />} />

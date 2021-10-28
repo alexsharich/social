@@ -13,7 +13,7 @@ type PropsType = {
 export const renderTree = () => {
     ReactDOM.render(
         <React.StrictMode>
-            <App _state={store.getState()} addPost={store.addPost.bind(store)} updateNewPostText={store.updateNewPostText.bind(store)} />
+            <App _state={store.getState()} dispatch={store.dispatch.bind(store)}/*  addPost={store.addPost.bind(store)} updateNewPostText={store.updateNewPostText.bind(store)} */ />
         </React.StrictMode>,
         document.getElementById('root')
     );

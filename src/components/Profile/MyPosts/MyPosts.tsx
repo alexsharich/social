@@ -8,10 +8,14 @@ const MyPosts = (props: StateDataType) => {
     let postElement = props._state.profilePage.posts.map(p => <Post message={p.message} likeCounter={p.likesCount} />)
 
     let addPost = () => {
-        props.addPost(props._state.profilePage.messageNewPostText)
+        let message = props._state.profilePage.messageNewPostText
+        //props.addPost(message)
+        props.dispatch({type:'ADD-POST', message: message} )
     }
     const onPostChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
-        props.updateNewPostText(e.currentTarget.value)
+        let text = e.currentTarget.value
+        //props.updateNewPostText(text)
+        props.dispatch({type:'UPDATE-NEW-TEXT',newText: text})
     }
 
     return (

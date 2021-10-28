@@ -50,8 +50,9 @@ export const subscribe = (observer: () => void) => {
 } */
 export type StateDataType = {
     _state: StateType
-    addPost: (message: string) => void
-    updateNewPostText: (newText: string) => void
+    /* addPost: (message: string) => void
+    updateNewPostText: (newText: string) => void */
+    dispatch:(action: ActionsType) => void
 }
 export type StateType = {
     profilePage: PostsType
@@ -78,14 +79,25 @@ type DialogType = {
     id: number
     name: string
 }
+type ActionsType = AddPostActionType | UpdateNewTextActionType
+type AddPostActionType = {
+    type: 'ADD-POST'
+    message: string
+}
+type UpdateNewTextActionType = {
+    type: 'UPDATE-NEW-TEXT'
+    newText: string   
+}
 export type StoreType = {
     _state: StateType
     getState: () => StateType
-    addPost: () => void
+    addPost: (message: string) => void
     updateNewPostText: (newText: string) => void
     subscribe: (observer: () => void) => void
     _renderTree: () => void
+    dispatch: (action: ActionsType) => void
 }
+
 
 export const store: StoreType = {
     _state: {
@@ -117,10 +129,10 @@ export const store: StoreType = {
     getState() {
         return this._state
     },
-    addPost() {
+    addPost(message: string) {
         const newPost: PostType = {
             id: new Date().getTime(),
-            message: this._state.profilePage.messageNewPostText,
+            message: message,
             likesCount: '0',
         }
         this._state.profilePage.posts.push(newPost);
@@ -136,6 +148,21 @@ export const store: StoreType = {
     },
     _renderTree() {
         console.log('state try to change')
+    },
+    dispatch(action: ActionsType) {
+        if (action.type === 'ADD-POST') {
+            const newPost: PostType = {
+                id: new Date().getTime(),
+                message: this._state.profilePage.messageNewPostText,
+                likesCount: '0',
+            }
+            this._state.profilePage.posts.push(newPost);
+            this._state.profilePage.messageNewPostText = ''
+            this._renderTree()
+        } else if (action.type === 'UPDATE-NEW-TEXT') {
+            this._state.profilePage.messageNewPostText = action.newText
+            this._renderTree()
+        }
     }
 
 }
