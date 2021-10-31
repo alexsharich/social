@@ -1,5 +1,5 @@
 import React, { ChangeEvent } from 'react';
-import { StateDataType } from '../../../state/state';
+import { addPostAC, StateDataType, updateNewTextAC } from '../../../state/state';
 import s from './MyPosts.module.css';
 import Post from './Post/Post'
 
@@ -10,12 +10,12 @@ const MyPosts = (props: StateDataType) => {
     let addPost = () => {
         let message = props._state.profilePage.messageNewPostText
         //props.addPost(message)
-        props.dispatch({type:'ADD-POST', message: message} )
+        props.dispatch(addPostAC(message))
     }
     const onPostChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
         let text = e.currentTarget.value
         //props.updateNewPostText(text)
-        props.dispatch({type:'UPDATE-NEW-TEXT',newText: text})
+        props.dispatch(updateNewTextAC(text))
     }
 
     return (

@@ -52,7 +52,7 @@ export type StateDataType = {
     _state: StateType
     /* addPost: (message: string) => void
     updateNewPostText: (newText: string) => void */
-    dispatch:(action: ActionsType) => void
+    dispatch: (action: ActionsType) => void
 }
 export type StateType = {
     profilePage: PostsType
@@ -79,15 +79,19 @@ type DialogType = {
     id: number
     name: string
 }
-type ActionsType = AddPostActionType | UpdateNewTextActionType
-type AddPostActionType = {
+//type ActionsType = AddPostActionType | UpdateNewTextActionType
+/* type AddPostActionType = {
     type: 'ADD-POST'
     message: string
 }
 type UpdateNewTextActionType = {
     type: 'UPDATE-NEW-TEXT'
-    newText: string   
-}
+    newText: string
+} */
+/* type AddPostActionType = ReturnType<typeof addPostAC>
+type UpdateNewTextActionType = ReturnType<typeof updateNewTextAC> */
+
+type ActionsType = ReturnType<typeof addPostAC> | ReturnType<typeof updateNewTextAC>
 export type StoreType = {
     _state: StateType
     getState: () => StateType
@@ -97,7 +101,18 @@ export type StoreType = {
     _renderTree: () => void
     dispatch: (action: ActionsType) => void
 }
-
+export const addPostAC = (message: string) => {
+    return {
+        type: 'ADD-POST',
+        message: message
+    } as const
+}
+export const updateNewTextAC = (newText: string) => {
+    return {
+        type: 'UPDATE-NEW-TEXT',
+        newText: newText
+    } as const
+}
 
 export const store: StoreType = {
     _state: {
@@ -166,6 +181,8 @@ export const store: StoreType = {
     }
 
 }
+
+
 export default store;
 
 
