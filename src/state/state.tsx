@@ -65,6 +65,7 @@ type PostsType = {
 type DialogsDataType = {
     dialogsData: Array<DialogType>
     messagesData: Array<MessageType>
+    newDialogText: string
 }
 type PostType = {
     id: number
@@ -91,7 +92,7 @@ type UpdateNewTextActionType = {
 /* type AddPostActionType = ReturnType<typeof addPostAC>
 type UpdateNewTextActionType = ReturnType<typeof updateNewTextAC> */
 
-type ActionsType = ReturnType<typeof addPostAC> | ReturnType<typeof updateNewTextAC>
+type ActionsType = ReturnType<typeof addPostAC> | ReturnType<typeof updateNewTextAC> | ReturnType<typeof newDialogTextAC> | ReturnType<typeof sendNewDialogTextAC>
 export type StoreType = {
     _state: StateType
     getState: () => StateType
@@ -111,6 +112,18 @@ export const updateNewTextAC = (newText: string) => {
     return {
         type: 'UPDATE-NEW-TEXT',
         newText: newText
+    } as const
+}
+export const newDialogTextAC = (newDialogText: string) => {
+    return {
+        type: 'ADD-NEW-DIALOG-TEXT',
+        newDialogText: newDialogText
+    } as const
+}
+export const sendNewDialogTextAC = (newDialogTextMessage: string) => {
+    return {
+        type: 'SEND-NEW-DIALOG-TEXT',
+        newDialogTextMessage: newDialogTextMessage
     } as const
 }
 
@@ -138,7 +151,8 @@ export const store: StoreType = {
                 { id: 3, message: 'Love' },
                 { id: 4, message: 'Yo' },
                 { id: 5, message: 'Yo' },
-            ]
+            ],
+            newDialogText: ''
         }
     },
     getState() {
@@ -176,6 +190,17 @@ export const store: StoreType = {
             this._renderTree()
         } else if (action.type === 'UPDATE-NEW-TEXT') {
             this._state.profilePage.messageNewPostText = action.newText
+            this._renderTree()
+        } else if (action.type === 'ADD-NEW-DIALOG-TEXT') {
+            this._state.dialogsPage.newDialogText = action.newDialogText
+            this._renderTree()
+        } else if (action.type === 'SEND-NEW-DIALOG-TEXT') {
+            const newDialog: MessageType = {
+                id: new Date().getTime(),
+                message: action.newDialogTextMessage
+            }
+            this._state.dialogsPage.messagesData.push(newDialog);
+            this._state.dialogsPage.newDialogText = ''
             this._renderTree()
         }
     }
