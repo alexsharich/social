@@ -1,16 +1,17 @@
 import React, { ChangeEvent } from "react";
-import { newDialogTextAC, sendNewDialogTextAC, StateDataType } from "../../state/state";
-
+import { newDialogTextAC, sendNewDialogTextAC } from "../../state/dialogsReducer";
+import { StateDataType } from "../../state/state";
 import DialogItem from "./DialogItem/DialogItem";
 import s from './Dialogs.module.css'
 import Message from "./Message/Message";
+
 
 
 const Dialogs = (props: StateDataType) => {
 
     let dialogsElement = props._state.dialogsPage.dialogsData
         .map(d => <DialogItem name={d.name} id={d.id} />)
-    debugger
+
     let messagesElements = props._state.dialogsPage.messagesData
         .map(m => <Message message={m.message} />)
 
@@ -24,7 +25,7 @@ const Dialogs = (props: StateDataType) => {
         let newDialogText = e.currentTarget.value
         props.dispatch(newDialogTextAC(newDialogText))
     }
-    const sendNewDialogTextHandler = () => {
+    const addNewDialog = () => {
         let newDialogTextMessage = props._state.dialogsPage.newDialogText
         props.dispatch(sendNewDialogTextAC(newDialogTextMessage))
     }
@@ -38,7 +39,7 @@ const Dialogs = (props: StateDataType) => {
             <div className={s.messages}>
                 {messagesElements}
                 <textarea value={props._state.dialogsPage.newDialogText} className={s.newMessageText} onChange={changeNewDialogTextHandler}></textarea>
-                <button className={s.newMessageButton} onClick={sendNewDialogTextHandler}>Add Message</button>
+                <button className={s.newMessageButton} onClick={addNewDialog}>Add Message</button>
             </div>
 
         </div>
