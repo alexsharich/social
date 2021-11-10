@@ -1,6 +1,6 @@
 import React, { ChangeEvent } from 'react';
 import { addPostAC, updateNewTextAC } from '../../../state/profileReducer';
-import { StateDataType } from '../../../state/state';
+import { StateDataType } from '../../../state/store';
 
 import s from './MyPosts.module.css';
 import Post from './Post/Post'

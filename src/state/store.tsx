@@ -40,7 +40,7 @@ export type StoreType = {
     /* addPost: (message: string) => void */
     /* updateNewPostText: (newText: string) => void */
     subscribe: (observer: () => void) => void
-    _renderTree: () => void
+    _renderTree: (_state: StateType) => void
     dispatch: (action: ActionsType) => void
 }
 
@@ -100,7 +100,7 @@ export const store: StoreType = {
         this._state.profilePage = profileReducer(this._state.profilePage, action)
         this._state.dialogsPage = dialogsReducer(this._state.dialogsPage, action)
 
-        this._renderTree()
+        this._renderTree(this._state)
 
         /* if (action.type === 'ADD-POST') {
             const newPost: PostType = {

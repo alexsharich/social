@@ -11,7 +11,7 @@ import Settings from './components/Settings/Settings';
 import Footer from './components/Footer/Footer';
 import Dialogs from './components/Dialogs/Dialogs';
 import { BrowserRouter, Route } from 'react-router-dom';
-import { StateDataType } from './state/state';
+import { StateDataType } from './state/store';
 //import { StateDataType, updateNewPostText } from './state/state';
 //import {addPost} from './state/state'
 

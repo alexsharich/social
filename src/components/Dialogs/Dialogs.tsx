@@ -1,6 +1,6 @@
 import React, { ChangeEvent } from "react";
 import { newDialogTextAC, sendNewDialogTextAC } from "../../state/dialogsReducer";
-import { StateDataType } from "../../state/state";
+import { StateDataType } from "../../state/store";
 import DialogItem from "./DialogItem/DialogItem";
 import s from './Dialogs.module.css'
 import Message from "./Message/Message";
