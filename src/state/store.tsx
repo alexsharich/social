@@ -10,11 +10,11 @@ export type StateType = {
     profilePage: PostsType
     dialogsPage: DialogsPageType
 }
-type PostsType = {
+export type PostsType = {
     posts: Array<PostType>
     messageNewPostText: string
 }
-type DialogsPageType = {
+export type DialogsPageType = {
     dialogsData: Array<DialogType>
     messagesData: Array<MessageType>
     newDialogText: string

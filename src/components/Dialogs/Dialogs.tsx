@@ -1,33 +1,39 @@
 import React, { ChangeEvent } from "react";
 import { newDialogTextAC, sendNewDialogTextAC } from "../../state/dialogsReducer";
-import { StateDataType } from "../../state/store";
+import { DialogsPageType, PostsType, StateDataType } from "../../state/store";
 import DialogItem from "./DialogItem/DialogItem";
 import s from './Dialogs.module.css'
 import Message from "./Message/Message";
 
+type DialogPropsType = {
+    changeNewDialogTextHandler: (newDialogText: string) => void
+    addNewDialog: (newDialogTextMessage: string) => void
+    state: DialogsPageType
+}
 
+const Dialogs = (props: DialogPropsType) => {
 
-const Dialogs = (props: StateDataType) => {
-
-    let dialogsElement = props._state.dialogsPage.dialogsData
+    let dialogsElement = props.state.dialogsData
         .map(d => <DialogItem name={d.name} id={d.id} />)
 
-    let messagesElements = props._state.dialogsPage.messagesData
+    let messagesElements = props.state.messagesData
         .map(m => <Message message={m.message} />)
 
-    let newMessageElement = React.createRef<HTMLTextAreaElement>()
+    //let newMessageElement = React.createRef<HTMLTextAreaElement>()
 
-    let addNewMessage = () => {
+    /* let addNewMessage = () => {
         let textMessage = newMessageElement.current?.value
         alert(textMessage)
-    }
-    const changeNewDialogTextHandler = (e: ChangeEvent<HTMLTextAreaElement>) => {
+    } */
+    const onChangeNewDialogTextHandler = (e: ChangeEvent<HTMLTextAreaElement>) => {
         let newDialogText = e.currentTarget.value
-        props.dispatch(newDialogTextAC(newDialogText))
+        //props.dispatch(newDialogTextAC(newDialogText))
+        props.changeNewDialogTextHandler(newDialogText)
     }
-    const addNewDialog = () => {
-        let newDialogTextMessage = props._state.dialogsPage.newDialogText
-        props.dispatch(sendNewDialogTextAC(newDialogTextMessage))
+    const onAddNewDialog = () => {
+        let newDialogTextMessage = props.state.newDialogText
+        //props.dispatch(sendNewDialogTextAC(newDialogTextMessage))
+        props.addNewDialog(newDialogTextMessage)
     }
 
     return (
@@ -38,8 +44,8 @@ const Dialogs = (props: StateDataType) => {
             </div>
             <div className={s.messages}>
                 {messagesElements}
-                <textarea value={props._state.dialogsPage.newDialogText} className={s.newMessageText} onChange={changeNewDialogTextHandler}></textarea>
-                <button className={s.newMessageButton} onClick={addNewDialog}>Add Message</button>
+                <textarea value={props.state.newDialogText} className={s.newMessageText} onChange={onChangeNewDialogTextHandler}></textarea>
+                <button className={s.newMessageButton} onClick={onAddNewDialog}>Add Message</button>
             </div>
 
         </div>

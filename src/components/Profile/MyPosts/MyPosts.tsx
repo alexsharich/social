@@ -1,23 +1,29 @@
 import React, { ChangeEvent } from 'react';
 import { addPostAC, updateNewTextAC } from '../../../state/profileReducer';
-import { StateDataType } from '../../../state/store';
+import { PostsType, StateDataType } from '../../../state/store';
 
 import s from './MyPosts.module.css';
 import Post from './Post/Post'
 
-const MyPosts = (props: StateDataType) => {
+type MyPostsType = {
+    addPost: (message: string) => void
+    updateNewPostText: (text: string) => void
+    state: PostsType
+}
 
-    let postElement = props._state.profilePage.posts.map(p => <Post message={p.message} likeCounter={p.likesCount} />)
+const MyPosts = (props: MyPostsType) => {
 
-    let addPost = () => {
-        let message = props._state.profilePage.messageNewPostText
-        //props.addPost(message)
-        props.dispatch(addPostAC(message))
+    let postElement = props.state.posts.map(p => <Post message={p.message} likeCounter={p.likesCount} />)
+
+    let onAddPost = () => {
+        let message = props.state.messageNewPostText
+        props.addPost(message)
+        //props.dispatch(addPostAC(message))
     }
     const onPostChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
         let text = e.currentTarget.value
-        //props.updateNewPostText(text)
-        props.dispatch(updateNewTextAC(text))
+        props.updateNewPostText(text)
+        //props.dispatch(updateNewTextAC(text))
     }
 
     return (
@@ -28,9 +34,9 @@ const MyPosts = (props: StateDataType) => {
             < div className={s.createTextPost}>
                 <textarea
                     onChange={onPostChange}
-                    value={props._state.profilePage.messageNewPostText} />
+                    value={props.state.messageNewPostText} />
                 <div className={s.textAreaButtons}>
-                    <button className={s.createPostButton} onClick={addPost}>Add Post</button>
+                    <button className={s.createPostButton} onClick={onAddPost}>Add Post</button>
                     <button className={s.removePostButton}>Remove</button>
                 </div>
             </div >
