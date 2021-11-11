@@ -6,12 +6,12 @@ import { StateDataType } from '../../state/store';
 import MyPostsContainer from './MyPosts/MyPostsContainer';
 
 
-const Profile = (props: StateDataType) => {
+const Profile = (/* props: StateDataType */) => {
   return (
     <div>
       <ProfileInfo />
-      <MyPostsContainer _state={props._state}
-        dispatch={props.dispatch}
+      <MyPostsContainer /* _state={props._state} */
+        /* dispatch={props.dispatch} */
        /*  addPost={props.addPost}
         updateNewPostText={props.updateNewPostText} */ />
     </div>

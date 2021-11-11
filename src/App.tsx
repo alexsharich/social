@@ -17,7 +17,7 @@ import DialogsContainer from './components/Dialogs/DialogsContainer';
 //import {addPost} from './state/state'
 
 
-function App(props: StateDataType) {
+function App(/* props: StateDataType */) {
 
   return (
     <BrowserRouter>
@@ -26,11 +26,11 @@ function App(props: StateDataType) {
           <Header />
           <NavBar />
           <div className='app-wrapper-content'>
-            <Route exact path='/profile' render={() => <Profile _state={props._state}
+            <Route exact path='/profile' render={() => <Profile /* _state={props._state} */
              /*  addPost={props.addPost}
               updateNewPostText={props.updateNewPostText} */
-              dispatch={props.dispatch} />} />
-            <Route exact path='/dialogs' render={() => <DialogsContainer _state={props._state} /* addPost={props.addPost} updateNewPostText={props.updateNewPostText} */ dispatch={props.dispatch}/>} />
+              /* dispatch={props.dispatch} */ />} />
+            <Route exact path='/dialogs' render={() => <DialogsContainer /* _state={props._state} */ /* addPost={props.addPost} updateNewPostText={props.updateNewPostText} */ /* dispatch={props.dispatch} *//>} />
             <Route exact path='/music' render={() => <Music />} />
             <Route exact path='/news' render={() => <News />} />
             <Route exact path='/settings' render={() => <Settings />} />
