@@ -3,20 +3,16 @@ import { newDialogTextAC, sendNewDialogTextAC } from "../../state/dialogsReducer
 import { DialogsPageType, PostsType, StateDataType } from "../../state/store";
 import DialogItem from "./DialogItem/DialogItem";
 import s from './Dialogs.module.css'
+import { DialogsPropsType } from "./DialogsContainer";
 import Message from "./Message/Message";
 
-type DialogPropsType = {
-    changeNewDialogTextHandler: (newDialogText: string) => void
-    addNewDialog: (newDialogTextMessage: string) => void
-    state: DialogsPageType
-}
 
-const Dialogs = (props: DialogPropsType) => {
+const Dialogs = (props: DialogsPropsType) => {
 
-    let dialogsElement = props.state.dialogsData
+    let dialogsElement = props.dialogsPage.dialogsData
         .map(d => <DialogItem name={d.name} id={d.id} />)
 
-    let messagesElements = props.state.messagesData
+    let messagesElements = props.dialogsPage.messagesData
         .map(m => <Message message={m.message} />)
 
     //let newMessageElement = React.createRef<HTMLTextAreaElement>()
@@ -31,7 +27,7 @@ const Dialogs = (props: DialogPropsType) => {
         props.changeNewDialogTextHandler(newDialogText)
     }
     const onAddNewDialog = () => {
-        let newDialogTextMessage = props.state.newDialogText
+        let newDialogTextMessage = props.dialogsPage.newDialogText
         //props.dispatch(sendNewDialogTextAC(newDialogTextMessage))
         props.addNewDialog(newDialogTextMessage)
     }
@@ -40,14 +36,12 @@ const Dialogs = (props: DialogPropsType) => {
         <div className={s.dialogs}>
             <div className={s.dialogsItems}>
                 {dialogsElement}
-
             </div>
             <div className={s.messages}>
                 {messagesElements}
-                <textarea value={props.state.newDialogText} className={s.newMessageText} onChange={onChangeNewDialogTextHandler}></textarea>
+                <textarea value={props.dialogsPage.newDialogText} className={s.newMessageText} onChange={onChangeNewDialogTextHandler}></textarea>
                 <button className={s.newMessageButton} onClick={onAddNewDialog}>Add Message</button>
             </div>
-
         </div>
     )
 }

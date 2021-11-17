@@ -3,20 +3,16 @@ import { addPostAC, updateNewTextAC } from '../../../state/profileReducer';
 import { PostsType, StateDataType } from '../../../state/store';
 
 import s from './MyPosts.module.css';
+import { MypostPropsType } from './MyPostsContainer';
 import Post from './Post/Post'
 
-type MyPostsType = {
-    addPost: (message: string) => void
-    updateNewPostText: (text: string) => void
-    state: PostsType
-}
 
-const MyPosts = (props: MyPostsType) => {
+const MyPosts = (props: MypostPropsType) => {
 
-    let postElement = props.state.posts.map(p => <Post message={p.message} likeCounter={p.likesCount} />)
+    let postElement = props.profilePage.posts.map(p => <Post key={p.id} message={p.message} likeCounter={p.likesCount} />)
 
     let onAddPost = () => {
-        let message = props.state.messageNewPostText
+        let message = props.profilePage.messageNewPostText
         props.addPost(message)
         //props.dispatch(addPostAC(message))
     }
@@ -34,7 +30,7 @@ const MyPosts = (props: MyPostsType) => {
             < div className={s.createTextPost}>
                 <textarea
                     onChange={onPostChange}
-                    value={props.state.messageNewPostText} />
+                    value={props.profilePage.messageNewPostText} />
                 <div className={s.textAreaButtons}>
                     <button className={s.createPostButton} onClick={onAddPost}>Add Post</button>
                     <button className={s.removePostButton}>Remove</button>

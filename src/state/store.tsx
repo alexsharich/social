@@ -24,7 +24,7 @@ export type PostType = {
     message: string
     likesCount: string
 }
-export type MessageType = {
+ type MessageType = {
     id: number
     message: string
 }

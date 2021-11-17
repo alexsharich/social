@@ -9,10 +9,11 @@ import News from './components/News/News';
 import Music from './components/Music/Music';
 import Settings from './components/Settings/Settings';
 import Footer from './components/Footer/Footer';
-import Dialogs from './components/Dialogs/Dialogs';
+
 import { BrowserRouter, Route } from 'react-router-dom';
-import { StateDataType } from './state/store';
+
 import DialogsContainer from './components/Dialogs/DialogsContainer';
+
 //import { StateDataType, updateNewPostText } from './state/state';
 //import {addPost} from './state/state'
 
@@ -26,11 +27,8 @@ function App(/* props: StateDataType */) {
           <Header />
           <NavBar />
           <div className='app-wrapper-content'>
-            <Route exact path='/profile' render={() => <Profile /* _state={props._state} */
-             /*  addPost={props.addPost}
-              updateNewPostText={props.updateNewPostText} */
-              /* dispatch={props.dispatch} */ />} />
-            <Route exact path='/dialogs' render={() => <DialogsContainer /* _state={props._state} */ /* addPost={props.addPost} updateNewPostText={props.updateNewPostText} */ /* dispatch={props.dispatch} *//>} />
+            <Route exact path='/profile' render={() => <Profile />} />
+            <Route exact path='/dialogs' render={() => <DialogsContainer />} />
             <Route exact path='/music' render={() => <Music />} />
             <Route exact path='/news' render={() => <News />} />
             <Route exact path='/settings' render={() => <Settings />} />

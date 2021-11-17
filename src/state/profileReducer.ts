@@ -1,4 +1,4 @@
-import { ActionsType, PostType } from "./store";
+import { ActionsType } from "./store"
 
 const ADD_POST = 'ADD-POST'
 const UPDATE_NEW_TEXT = 'UPDATE-NEW-TEXT'
@@ -11,8 +11,15 @@ const initialProfileState = {
     ],
     messageNewPostText: ''
 }
+type PostType = {
+    id: number
+    message: string
+    likesCount: string
+}
 
-type initialProfileStateType = typeof initialProfileState
+//type ActionsType = ReturnType<typeof addPostAC> | ReturnType<typeof updateNewTextAC> 
+
+export type initialProfileStateType = typeof initialProfileState
 
 export const profileReducer = (state: initialProfileStateType = initialProfileState, action: ActionsType): initialProfileStateType => {
     switch (action.type) {

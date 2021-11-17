@@ -4,13 +4,10 @@ import './index.css';
 import reportWebVitals from './reportWebVitals';
 //import state, { addPost, StateType, subscribe, updateNewPostText } from './state/state';
 import App from './App';
-import store from './state/redux-store';
-import { StateType } from './state/store';
-import { Provider } from './StoreContext';
+import { Provider } from 'react-redux';
+import { store } from './state/redux-store';
 
-
-
-export const renderTree = (state: StateType) => {
+export const renderTree = () => {
     ReactDOM.render(
         <React.StrictMode>
             <Provider store={store}>
@@ -21,11 +18,8 @@ export const renderTree = (state: StateType) => {
     );
 }
 
-renderTree(store.getState())
-store.subscribe(() => {
-    let state = store.getState()
-    renderTree(state)
-})
+renderTree()
+store.subscribe(() => { renderTree() })
 
 
 // If you want to start measuring performance in your app, pass a function
