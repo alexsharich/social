@@ -1,7 +1,7 @@
 import React, { ChangeEvent } from "react";
 import { connect } from "react-redux";
 import { Dispatch } from "redux";
-import { initialDialogsStateType, sendNewDialogTextAC } from "../../state/dialogsReducer";
+import { initialDialogsStateType, newDialogTextAC, sendNewDialogTextAC } from "../../state/dialogsReducer";
 import { AppStateType } from "../../state/redux-store";
 import Dialogs from "./Dialogs";
 
@@ -26,9 +26,8 @@ const mapDispatchToProps = (dispatch: Dispatch): MapDispatchToProps => {
             dispatch(sendNewDialogTextAC(newDialogTextMessage))
         },
         changeNewDialogTextHandler: (newDialogText: string) => {
-            dispatch(sendNewDialogTextAC(newDialogText))
+            dispatch(newDialogTextAC(newDialogText))
         }
-
     }
 }
 
