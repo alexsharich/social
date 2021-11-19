@@ -13,6 +13,7 @@ import Footer from './components/Footer/Footer';
 import { BrowserRouter, Route } from 'react-router-dom';
 
 import DialogsContainer from './components/Dialogs/DialogsContainer';
+import UsersContainer from './components/User/UsersContainer';
 
 //import { StateDataType, updateNewPostText } from './state/state';
 //import {addPost} from './state/state'
@@ -29,6 +30,7 @@ function App(/* props: StateDataType */) {
           <div className='app-wrapper-content'>
             <Route exact path='/profile' render={() => <Profile />} />
             <Route exact path='/dialogs' render={() => <DialogsContainer />} />
+            <Route exact path='/users' render={() => <UsersContainer />} />
             <Route exact path='/music' render={() => <Music />} />
             <Route exact path='/news' render={() => <News />} />
             <Route exact path='/settings' render={() => <Settings />} />

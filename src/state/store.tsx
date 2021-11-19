@@ -1,5 +1,6 @@
 import { dialogsReducer, newDialogTextAC, sendNewDialogTextAC } from "./dialogsReducer"
 import { addPostAC, profileReducer, updateNewTextAC } from "./profileReducer"
+import { followAC, setusersAC, unfollowAC } from "./usersReducer"
 
 
 export type StateDataType = {
@@ -24,7 +25,7 @@ export type PostType = {
     message: string
     likesCount: string
 }
- type MessageType = {
+type MessageType = {
     id: number
     message: string
 }
@@ -33,7 +34,13 @@ type DialogType = {
     name: string
 }
 
-export type ActionsType = ReturnType<typeof addPostAC> | ReturnType<typeof updateNewTextAC> | ReturnType<typeof newDialogTextAC> | ReturnType<typeof sendNewDialogTextAC>
+export type ActionsType = ReturnType<typeof addPostAC>
+    | ReturnType<typeof updateNewTextAC>
+    | ReturnType<typeof newDialogTextAC>
+    | ReturnType<typeof sendNewDialogTextAC>
+    | ReturnType<typeof followAC>
+    | ReturnType<typeof unfollowAC>
+    | ReturnType<typeof setusersAC>
 export type StoreType = {
     _state: StateType
     getState: () => StateType

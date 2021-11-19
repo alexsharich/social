@@ -7,7 +7,6 @@ import Dialogs from "./Dialogs";
 
 type MapStateToProps = {
     dialogsPage: initialDialogsStateType
-
 }
 type MapDispatchToProps = {
     addNewDialog: (newDialogTextMessage: string) => void

@@ -4,7 +4,7 @@ import { ActionsType } from "./store"
 const UPDATE_NEW_DIALOG_TEXT = 'UPDATE-NEW-DIALOG-TEXT'
 const SEND_NEW_DIALOG_TEXT = 'SEND-NEW-DIALOG-TEXT'
 
- type MessageType = {
+type MessageType = {
     id: number
     message: string
 }
@@ -35,18 +35,16 @@ const initialDialogsState = {
 
 export type initialDialogsStateType = typeof initialDialogsState
 
-
-
 export const dialogsReducer = (state: initialDialogsStateType = initialDialogsState, action: ActionsType): initialDialogsStateType => {
     switch (action.type) {
         case UPDATE_NEW_DIALOG_TEXT:
-            return {...state, newDialogText:action.newDialogText}
+            return { ...state, newDialogText: action.newDialogText }
         case SEND_NEW_DIALOG_TEXT:
             const newDialog: MessageType = {
                 id: new Date().getTime(),
                 message: action.newDialogTextMessage
             }
-            return {...state,messagesData: [...state.messagesData,newDialog],newDialogText:''}
+            return { ...state, messagesData: [...state.messagesData, newDialog], newDialogText: '' }
         default:
             return state
     }
