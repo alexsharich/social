@@ -44,8 +44,6 @@ export type ActionsType = ReturnType<typeof addPostAC>
 export type StoreType = {
     _state: StateType
     getState: () => StateType
-    /* addPost: (message: string) => void */
-    /* updateNewPostText: (newText: string) => void */
     subscribe: (observer: () => void) => void
     _renderTree: (_state: StateType) => void
     dispatch: (action: ActionsType) => void

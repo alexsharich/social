@@ -1,7 +1,5 @@
 import React from 'react'
-import { followAC } from '../../state/usersReducer'
 import s from './Users.module.css'
-
 import { UsersPropsType } from './UsersContainer'
 
 const Users = (props: UsersPropsType) => {
@@ -54,7 +52,6 @@ const Users = (props: UsersPropsType) => {
 
         ])
     }
-
     return (
         <div>
             {props.usersPage.users.map(u => <div key={u.id}>
@@ -67,7 +64,6 @@ const Users = (props: UsersPropsType) => {
                             ? <button onClick={() => { props.follow(u.id) }}>Follow</button>
                             : <button onClick={() => { props.unfollow(u.id) }}>Unfollow</button>
                     }
-
                     </div>
                 </span>
                 <span>

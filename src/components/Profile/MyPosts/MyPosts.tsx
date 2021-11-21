@@ -1,7 +1,4 @@
 import React, { ChangeEvent } from 'react';
-import { addPostAC, updateNewTextAC } from '../../../state/profileReducer';
-import { PostsType, StateDataType } from '../../../state/store';
-
 import s from './MyPosts.module.css';
 import { MypostPropsType } from './MyPostsContainer';
 import Post from './Post/Post'
@@ -14,12 +11,10 @@ const MyPosts = (props: MypostPropsType) => {
     let onAddPost = () => {
         let message = props.profilePage.messageNewPostText
         props.addPost(message)
-        //props.dispatch(addPostAC(message))
     }
     const onPostChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
         let text = e.currentTarget.value
         props.updateNewPostText(text)
-        //props.dispatch(updateNewTextAC(text))
     }
 
     return (

@@ -5,7 +5,6 @@ import { AppStateType } from "../../state/redux-store";
 import { followAC, initialUsersStateType, setusersAC, unfollowAC, UserType } from "../../state/usersReducer";
 import Users from "./Users";
 
-
 type MapStateToProps = {
     usersPage: initialUsersStateType
 }

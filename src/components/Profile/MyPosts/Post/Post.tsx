@@ -19,7 +19,6 @@ const Post: React.FC<MessageType> = (props) => {
                 <span>like {props.likeCounter}</span>
             </div>
         </div>
-
     )
 }
 

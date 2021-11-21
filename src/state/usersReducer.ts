@@ -21,7 +21,7 @@ type UserLocationType = {
 //type ActionsType = ReturnType<typeof followAC> | ReturnType<typeof unfollowtAC>
 
 const initialUsersState = {
-    users: [
+    users: [/* 
         {
             id: 1,
             followed: true,
@@ -65,7 +65,7 @@ const initialUsersState = {
                 city: 'New York',
                 country: 'Usa'
             }
-        }
+        } */
     ] as Array<UserType>
 
 }

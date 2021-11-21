@@ -9,17 +9,11 @@ import News from './components/News/News';
 import Music from './components/Music/Music';
 import Settings from './components/Settings/Settings';
 import Footer from './components/Footer/Footer';
-
 import { BrowserRouter, Route } from 'react-router-dom';
-
 import DialogsContainer from './components/Dialogs/DialogsContainer';
 import UsersContainer from './components/User/UsersContainer';
 
-//import { StateDataType, updateNewPostText } from './state/state';
-//import {addPost} from './state/state'
-
-
-function App(/* props: StateDataType */) {
+function App() {
 
   return (
     <BrowserRouter>
