@@ -21,52 +21,7 @@ type UserLocationType = {
 //type ActionsType = ReturnType<typeof followAC> | ReturnType<typeof unfollowtAC>
 
 const initialUsersState = {
-    users: [/* 
-        {
-            id: 1,
-            followed: true,
-            photoUrl: 'https://kubnews.ru/upload/iblock/ba2/ba2cc9fa383e672568a551fe49b46a3f.jpg',
-            fullName: 'Aleksander',
-            status: 'Be happy',
-            location: {
-                city: 'Minsk',
-                country: 'Belarus'
-            }
-        },
-        {
-            id: 2,
-            followed: false,
-            photoUrl: 'https://kubnews.ru/upload/iblock/ba2/ba2cc9fa383e672568a551fe49b46a3f.jpg',
-            fullName: 'Sergei',
-            status: 'Be happy',
-            location: {
-                city: 'Moscow',
-                country: 'Russia'
-            }
-        },
-        {
-            id: 3,
-            followed: true,
-            photoUrl: 'https://kubnews.ru/upload/iblock/ba2/ba2cc9fa383e672568a551fe49b46a3f.jpg',
-            fullName: 'Pavel',
-            status: 'Be happy',
-            location: {
-                city: 'Kiev',
-                country: 'Ukraine'
-            }
-        },
-        {
-            id: 4,
-            followed: true,
-            photoUrl: 'https://kubnews.ru/upload/iblock/ba2/ba2cc9fa383e672568a551fe49b46a3f.jpg',
-            fullName: 'Aleksander',
-            status: 'Be happy',
-            location: {
-                city: 'New York',
-                country: 'Usa'
-            }
-        } */
-    ] as Array<UserType>
+    users: [] as Array<UserType>
 
 }
 
