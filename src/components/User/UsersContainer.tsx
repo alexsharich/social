@@ -3,7 +3,8 @@ import { connect } from "react-redux";
 import { Dispatch } from "redux";
 import { AppStateType } from "../../state/redux-store";
 import { followAC, initialUsersStateType, setusersAC, unfollowAC, UserType } from "../../state/usersReducer";
-import Users from "./Users";
+import Users from "./UsersC";
+
 
 type MapStateToProps = {
     usersPage: initialUsersStateType
@@ -35,5 +36,5 @@ const mapDispatchToProps = (dispatch: Dispatch): MapDispatchToProps => {
 }
 
 const UsersContainer = connect(mapStateToProps, mapDispatchToProps)(Users)
-
+//использую классовый компонент из UserC.tsx 
 export default UsersContainer;
