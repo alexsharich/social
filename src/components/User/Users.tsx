@@ -5,14 +5,17 @@ import { UsersPropsType } from './UsersContainer'
 import userPhoto from '../../assets/images/user.png'
 
 const Users = (props: UsersPropsType) => {
-
+const getUsers = () => {
     if (props.usersPage.users.length === 0) {
         axios.get('https://social-network.samuraijs.com/api/1.0/users').then(response => {
             props.setUsers(response.data.items)
         })
     }
+}
+    
     return (
         <div>
+            <button onClick={getUsers}>GET USERS</button>
             {props.usersPage.users.map(u => <div key={u.id}>
                 <span>
                     <div>
