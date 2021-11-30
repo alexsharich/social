@@ -1,12 +1,18 @@
 .postItem {
     display: flex;
     flex-direction: row;
+    align-items: flex-end;
+    margin: 20px;
+}
+.angle {
+    width: 30px;
+    height: 30px;
+    background: radial-gradient(circle at 0  0, rgba(0,0,0,0) 30px, rgba(18, 138, 218, 0.5)0);   
 }
 .item {
     color: rgb(226, 226, 238);
     width: 200px;
-    background-color: rgba(18, 138, 218, 0.7);
-    margin: 10px;
+    background-color: rgba(18, 138, 218, 0.5);
     border-radius: 5px 5px 5px 0;
 }
 .postItem img {

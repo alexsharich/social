@@ -4,18 +4,20 @@ import { ActionsType } from "./store"
 const FOLLOW = 'FOLLOW'
 const UNFOLLOW = 'UNFOLLOW'
 const SET_USERS = 'SET-USERS'
+const SET_CURRENT_PAGE = 'SET-CURRENT-PAGE'
+const SET_TOTAL_USERS_COUNT = 'SET-TOTAL-USERS-COUNT'
 
 export type UserType = {
     name: string
     id: number
-    photos: PhotoUserType 
+    photos: PhotoUserType
     status: string
     followed: boolean
     location: UserLocationType
 }
 type PhotoUserType = {
-    small:string
-    large:string
+    small: string
+    large: string
 }
 type UserLocationType = {
     city: string
@@ -25,8 +27,10 @@ type UserLocationType = {
 //type ActionsType = ReturnType<typeof followAC> | ReturnType<typeof unfollowtAC>
 
 const initialUsersState = {
-    users: [] as Array<UserType>
-
+    users: [] as Array<UserType>,
+    pageSize: 5,
+    totalUsersCount: 0,
+    currentPage: 1,
 }
 
 export type initialUsersStateType = typeof initialUsersState
@@ -44,7 +48,17 @@ export const usersReducer = (state: initialUsersStateType = initialUsersState, a
         case SET_USERS:
             return {
                 ...state,
-                users: [...state.users, ...action.users]
+                users: action.users
+            }
+        case SET_CURRENT_PAGE:
+            return {
+                ...state,
+                currentPage: action.currentPage
+            }
+        case SET_TOTAL_USERS_COUNT:
+            return {
+                ...state,
+                totalUsersCount: /* action.totalCount */ 100 /* чтобы не показывать 3000 страниц */
             }
         default:
             return state
@@ -67,5 +81,17 @@ export const setusersAC = (users: Array<UserType>) => {
     return {
         type: 'SET-USERS',
         users: users
+    } as const
+}
+export const setCurrentPageAC = (currentPage: number) => {
+    return {
+        type: 'SET-CURRENT-PAGE',
+        currentPage: currentPage
+    } as const
+}
+export const setTotalUsersCountAC = (totalCount: number) => {
+    return {
+        type: 'SET-TOTAL-USERS-COUNT',
+        totalCount: totalCount
     } as const
 }
