@@ -1,6 +1,14 @@
+.userBlock {
+    width: 200px;
+    background-color: rgba(18, 138, 218, 0.5);
+    border-radius: 5px;
+    margin: 10px;
+    text-align: center;  
+}
 .userImg {
     width: 100px;
     height: 100px;
+    border-radius: 5px;
 }
 span {
     color: white;

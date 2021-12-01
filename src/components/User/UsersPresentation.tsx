@@ -2,6 +2,7 @@ import React from 'react'
 import s from './Users.module.css'
 import userPhoto from '../../assets/images/user.png'
 import { UserType } from '../../state/usersReducer'
+import { Preloader } from '../Preloader/Preloader'
 
 type UsersPresntationType = {
     totalUsersCount: number
@@ -11,6 +12,7 @@ type UsersPresntationType = {
     currentPage: number
     follow: (buttonId: number) => void
     unfollow: (buttonId: number) => void
+    isFetching: boolean 
 }
 
 export const UsersPresentation = (props: UsersPresntationType) => {
@@ -22,24 +24,21 @@ export const UsersPresentation = (props: UsersPresntationType) => {
         pages.push(i)
     }
     return (
-        <div>
+        <>
+        {props.isFetching ?   <Preloader/> : null}
+      
+        <div >
             <div className={s.buttonsPages}>
                 {pages.map(p => {
                     return <span onClick={() => { props.onPageChanged(p) }} className={props.currentPage === p ? s.selectedPage : ''}>{p}</span>
                 })}
             </div>
 
-            {props.users.map(u => <div key={u.id}>
+            {props.users.map(u => <div key={u.id} className={s.userBlock}>
                 <span>
                     <div>
                         <img className={s.userImg} src={u.photos.small != null ? u.photos.small : userPhoto} />
-                    </div>
-                    <div>{
-                        u.followed
-                            ? <button onClick={() => { props.follow(u.id) }}>Follow</button>
-                            : <button onClick={() => { props.unfollow(u.id) }}>Unfollow</button>
-                    }
-                    </div>
+                    </div>    
                 </span>
                 <span>
                     <span>
@@ -52,8 +51,19 @@ export const UsersPresentation = (props: UsersPresntationType) => {
                         <div>{'u.location.city'}</div>
                         <div>{'u.location.country'}</div>
                     </span>
+                    <div>{
+                        u.followed
+                            ? <button onClick={() => { props.follow(u.id) }}>Follow</button>
+                            : <button onClick={() => { props.unfollow(u.id) }}>Unfollow</button>
+                    }
+                    </div>
                 </span>
-            </div>)}
+            </div>
+            )
+            }
+            
         </div>
+        </>
+        
     )
 }

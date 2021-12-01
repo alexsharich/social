@@ -2,7 +2,7 @@ import React, { ChangeEvent } from "react";
 import { connect } from "react-redux";
 import { Dispatch } from "redux";
 import { AppStateType } from "../../state/redux-store";
-import { followAC, initialUsersStateType, setCurrentPageAC, setTotalUsersCountAC, setusersAC, unfollowAC, UserType } from "../../state/usersReducer";
+import { followAC, initialUsersStateType, setCurrentPageAC, setTotalUsersCountAC, setusersAC, toggleIsFetchingAC, unfollowAC, UserType } from "../../state/usersReducer";
 
 import { UsersPresentation } from "./UsersPresentation";
 import axios from 'axios'
@@ -12,6 +12,7 @@ type MapStateToProps = {
     pageSize: number,
     totalUsersCount: number,
     currentPage: number,
+    isFetching: boolean,
 }
 type MapDispatchToProps = {
     follow: (userId: number) => void
@@ -19,6 +20,7 @@ type MapDispatchToProps = {
     setUsers: (users: Array<UserType>) => void
     setCurrentPage: (currentPage: number) => void
     setTotalUsersCount: (totalCount: number) => void
+    toggleIsFetching: (isFetching: boolean) => void
 }
 export type UsersPropsType = MapStateToProps & MapDispatchToProps
 
@@ -26,15 +28,19 @@ export type UsersPropsType = MapStateToProps & MapDispatchToProps
 class UsersAPI extends React.Component<UsersPropsType> {
 
     componentDidMount(): void {
+        this.props.toggleIsFetching(true)
         axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`).then(response => {
+            this.props.toggleIsFetching(false)
             this.props.setUsers(response.data.items)
             this.props.setTotalUsersCount(response.data.totalCount)
         })
     }
 
     onPageChanged = (pageNumber: number) => {
+        this.props.toggleIsFetching(true)
         this.props.setCurrentPage(pageNumber)
         axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${pageNumber}&count=${this.props.pageSize}`).then(response => {
+            this.props.toggleIsFetching(false)
             this.props.setUsers(response.data.items)
         })
     }
@@ -48,6 +54,7 @@ class UsersAPI extends React.Component<UsersPropsType> {
             unfollow={this.props.unfollow}
             users={this.props.usersPage.users}
             currentPage={this.props.currentPage}
+            isFetching={this.props.isFetching}
         />
     }
 }
@@ -58,7 +65,8 @@ const mapStateToProps = (state: AppStateType): MapStateToProps => {
         usersPage: state.usersPage,
         pageSize: state.usersPage.pageSize,
         totalUsersCount: state.usersPage.totalUsersCount,
-        currentPage: state.usersPage.currentPage
+        currentPage: state.usersPage.currentPage,
+        isFetching: state.usersPage.isFetching,
     }
 }
 const mapDispatchToProps = (dispatch: Dispatch): MapDispatchToProps => {
@@ -77,6 +85,9 @@ const mapDispatchToProps = (dispatch: Dispatch): MapDispatchToProps => {
         },
         setTotalUsersCount: (totalCount: number) => {
             dispatch(setTotalUsersCountAC(totalCount))
+        },
+        toggleIsFetching: (isFetching: boolean) => {
+            dispatch(toggleIsFetchingAC(isFetching))
         }
     }
 }
