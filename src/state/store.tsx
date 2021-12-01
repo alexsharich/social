@@ -1,6 +1,6 @@
 import { dialogsReducer, newDialogTextAC, sendNewDialogTextAC } from "./dialogsReducer"
 import { addPostAC, profileReducer, updateNewTextAC } from "./profileReducer"
-import { followAC, setCurrentPageAC, setTotalUsersCountAC, setusersAC, toggleIsFetchingAC, unfollowAC } from "./usersReducer"
+import { follow, setCurrentPage, setTotalUsersCount, setUsers, toggleIsFetching, unfollow } from "./usersReducer"
 
 
 export type StateDataType = {
@@ -38,12 +38,13 @@ export type ActionsType = ReturnType<typeof addPostAC>
     | ReturnType<typeof updateNewTextAC>
     | ReturnType<typeof newDialogTextAC>
     | ReturnType<typeof sendNewDialogTextAC>
-    | ReturnType<typeof followAC>
-    | ReturnType<typeof unfollowAC>
-    | ReturnType<typeof setusersAC>
-    | ReturnType<typeof setCurrentPageAC>
-    | ReturnType<typeof setTotalUsersCountAC>
-    | ReturnType<typeof toggleIsFetchingAC>
+    | ReturnType<typeof follow>
+    | ReturnType<typeof unfollow>
+    | ReturnType<typeof setUsers>
+    | ReturnType<typeof setCurrentPage>
+    | ReturnType<typeof setTotalUsersCount>
+    | ReturnType<typeof toggleIsFetching>
+    
 export type StoreType = {
     _state: StateType
     getState: () => StateType

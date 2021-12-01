@@ -2,7 +2,7 @@ import React, { ChangeEvent } from "react";
 import { connect } from "react-redux";
 import { Dispatch } from "redux";
 import { AppStateType } from "../../state/redux-store";
-import { followAC, initialUsersStateType, setCurrentPageAC, setTotalUsersCountAC, setusersAC, toggleIsFetchingAC, unfollowAC, UserType } from "../../state/usersReducer";
+import { follow, initialUsersStateType, setCurrentPage, setTotalUsersCount, setUsers, toggleIsFetching, unfollow, UserType } from "../../state/usersReducer";
 
 import { UsersPresentation } from "./UsersPresentation";
 import axios from 'axios'
@@ -69,7 +69,7 @@ const mapStateToProps = (state: AppStateType): MapStateToProps => {
         isFetching: state.usersPage.isFetching,
     }
 }
-const mapDispatchToProps = (dispatch: Dispatch): MapDispatchToProps => {
+/* const mapDispatchToProps = (dispatch: Dispatch): MapDispatchToProps => {
     return {
         follow: (userId: number) => {
             dispatch(followAC(userId))
@@ -90,8 +90,8 @@ const mapDispatchToProps = (dispatch: Dispatch): MapDispatchToProps => {
             dispatch(toggleIsFetchingAC(isFetching))
         }
     }
-}
+} */
 
-const UsersContainer = connect(mapStateToProps, mapDispatchToProps)(UsersAPI)
-//использую классовый компонент из UserC.tsx 
+const UsersContainer = connect(mapStateToProps, {follow,unfollow,setUsers,setCurrentPage,setTotalUsersCount,toggleIsFetching})(UsersAPI)
+
 export default UsersContainer;
