@@ -3,6 +3,7 @@ import s from './Users.module.css'
 import userPhoto from '../../assets/images/user.png'
 import { UserType } from '../../state/usersReducer'
 import { Preloader } from '../Preloader/Preloader'
+import { NavLink } from 'react-router-dom'
 
 type UsersPresntationType = {
     totalUsersCount: number
@@ -37,7 +38,9 @@ export const UsersPresentation = (props: UsersPresntationType) => {
             {props.users.map(u => <div key={u.id} className={s.userBlock}>
                 <span>
                     <div>
+                        <NavLink to={'/profile/'+u.id }>
                         <img className={s.userImg} src={u.photos.small != null ? u.photos.small : userPhoto} />
+                        </NavLink>                       
                     </div>    
                 </span>
                 <span>

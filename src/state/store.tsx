@@ -1,5 +1,5 @@
 import { dialogsReducer, newDialogTextAC, sendNewDialogTextAC } from "./dialogsReducer"
-import { addPostAC, profileReducer, updateNewTextAC } from "./profileReducer"
+import { addPostAC, profileReducer, setUserProfile, updateNewTextAC } from "./profileReducer"
 import { follow, setCurrentPage, setTotalUsersCount, setUsers, toggleIsFetching, unfollow } from "./usersReducer"
 
 
@@ -14,6 +14,7 @@ export type StateType = {
 export type PostsType = {
     posts: Array<PostType>
     messageNewPostText: string
+    profile: any //////////////////////////////??????
 }
 export type DialogsPageType = {
     dialogsData: Array<DialogType>
@@ -44,7 +45,8 @@ export type ActionsType = ReturnType<typeof addPostAC>
     | ReturnType<typeof setCurrentPage>
     | ReturnType<typeof setTotalUsersCount>
     | ReturnType<typeof toggleIsFetching>
-    
+    | ReturnType<typeof setUserProfile>
+
 export type StoreType = {
     _state: StateType
     getState: () => StateType
@@ -61,7 +63,8 @@ export const store: StoreType = {
                 { id: 2, message: 'Don,t touch my dog', likesCount: '2' },
                 { id: 3, message: 'Hello, John', likesCount: '1000' },
             ],
-            messageNewPostText: ''
+            messageNewPostText: '',
+            profile: null //////////////////////????????????????
         },
         dialogsPage: {
             dialogsData: [
