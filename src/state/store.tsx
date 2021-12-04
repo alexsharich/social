@@ -108,10 +108,10 @@ export const store: StoreType = {
         console.log('state try to change')
     },
     dispatch(action: ActionsType) {
-
-        this._state.profilePage = profileReducer(this._state.profilePage, action)
-        this._state.dialogsPage = dialogsReducer(this._state.dialogsPage, action)
-
+////////////////////////////////////////////
+        /* this._state.profilePage = profileReducer(this._state.profilePage, action)
+        this._state.dialogsPage = dialogsReducer(this._state.dialogsPage, action) */
+/////////////////////////////////////////
         this._renderTree(this._state)
 
         /* if (action.type === 'ADD-POST') {

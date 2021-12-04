@@ -1,4 +1,4 @@
-import { ActionsType } from "./store"
+//import { ActionsType } from "./store"
 
 const ADD_POST = 'ADD-POST'
 const UPDATE_NEW_TEXT = 'UPDATE-NEW-TEXT'
@@ -42,7 +42,7 @@ export type ProfileUserType = {
     photos: ProfilePhotoType
 }
 
-//type ActionsType = ReturnType<typeof addPostAC> | ReturnType<typeof updateNewTextAC> 
+type ActionsType = ReturnType<typeof addPostAC> | ReturnType<typeof updateNewTextAC> | ReturnType<typeof setUserProfile> 
 
 export type initialProfileStateType = typeof initialProfileState
 

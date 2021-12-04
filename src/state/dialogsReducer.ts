@@ -1,4 +1,4 @@
-import { ActionsType } from "./store"
+//import { ActionsType } from "./store"
 
 
 const UPDATE_NEW_DIALOG_TEXT = 'UPDATE-NEW-DIALOG-TEXT'
@@ -13,7 +13,7 @@ type DialogType = {
     name: string
 }
 
-//type ActionsType = ReturnType <typeof newDialogTextAC> | ReturnType <typeof sendNewDialogTextAC>
+type ActionsType = ReturnType <typeof newDialogTextAC> | ReturnType <typeof sendNewDialogTextAC>
 
 const initialDialogsState = {
     dialogsData: [

@@ -1,4 +1,4 @@
-import { ActionsType } from "./store"
+//import { ActionsType } from "./store"
 
 
 const FOLLOW = 'FOLLOW'
@@ -25,11 +25,11 @@ type UserLocationType = {
     country: string
 }
 
-//type ActionsType = ReturnType<typeof followAC> | ReturnType<typeof unfollowtAC>
+type ActionsType = ReturnType<typeof follow> | ReturnType<typeof unfollow> |ReturnType<typeof setUsers> | ReturnType<typeof setCurrentPage>| ReturnType<typeof setTotalUsersCount> |ReturnType<typeof toggleIsFetching> 
 
 const initialUsersState = {
     users: [] as Array<UserType>,
-    pageSize: 5,
+    pageSize: 10,
     totalUsersCount: 0,
     currentPage: 1,
     isFetching: false,
@@ -60,7 +60,7 @@ export const usersReducer = (state: initialUsersStateType = initialUsersState, a
         case SET_TOTAL_USERS_COUNT:
             return {
                 ...state,
-                totalUsersCount: /* action.totalCount */ 100 /* чтобы не показывать 3000 страниц */
+                totalUsersCount: /* action.totalCount */ 200 /* чтобы не показывать 3000 страниц */
             }
         case TOGGLE_IS_FETCHING:
             return {

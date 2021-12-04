@@ -3,6 +3,7 @@ import React from "react";
 import { ProfileUserType } from "../../../state/profileReducer";
 import { Preloader } from "../../Preloader/Preloader";
 import s from './ProfileInfo.module.css'
+import userPhoto from '../../../assets/images/user.png'
 
 type ProfileInfoPropsType = {
     profile: ProfileUserType
