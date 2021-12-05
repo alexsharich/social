@@ -1,6 +1,5 @@
 //import { ActionsType } from "./store"
 
-
 const UPDATE_NEW_DIALOG_TEXT = 'UPDATE-NEW-DIALOG-TEXT'
 const SEND_NEW_DIALOG_TEXT = 'SEND-NEW-DIALOG-TEXT'
 
