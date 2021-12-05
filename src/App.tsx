@@ -27,6 +27,7 @@ function App() {
             <Route path='/users' render={() => <UsersContainer />} />
             <Route path='/music' render={() => <Music />} />
             <Route path='/news' render={() => <News />} />
+            <Route path='/clock' render={() => <News />} />
             <Route path='/settings' render={() => <Settings />} />
           </div>
           <Footer />
