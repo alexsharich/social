@@ -66,7 +66,6 @@ export const UsersPresentation = (props: UsersPresntationType) => {
             }
             
         </div>
-        </>
-        
+        </>      
     )
 }
