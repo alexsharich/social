@@ -12,6 +12,7 @@ import { BrowserRouter, Route } from 'react-router-dom';
 import DialogsContainer from './components/Dialogs/DialogsContainer';
 import UsersContainer from './components/User/UsersContainer';
 import ProfileContainer from './components/Profile/ProfileContainer';
+import Clock from './components/Clock/Clock';
 
 function App() {
 
@@ -27,7 +28,7 @@ function App() {
             <Route path='/users' render={() => <UsersContainer />} />
             <Route path='/music' render={() => <Music />} />
             <Route path='/news' render={() => <News />} />
-            <Route path='/clock' render={() => <News />} />
+            <Route path='/clock' render={() => <Clock />} />
             <Route path='/settings' render={() => <Settings />} />
           </div>
           <Footer />
