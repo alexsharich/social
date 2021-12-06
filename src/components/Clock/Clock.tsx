@@ -6,8 +6,18 @@ const Clock = () => {
     let [time, setTime] = useState<Date>(new Date())
 
     useEffect(() => {
-        setInterval(() => { setTime(new Date()) }, 1000)
-    }, [time])
+
+        let clockId = setInterval(() => {
+            setTime(new Date())
+        }, 1000)
+ 
+        return () => {
+            clearInterval(clockId)
+        }
+
+    }, [])
+
+
 
     let clock = time?.toLocaleTimeString()
 
