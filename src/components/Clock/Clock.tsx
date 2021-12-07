@@ -17,8 +17,6 @@ const Clock = () => {
 
     }, [])
 
-
-
     let clock = time?.toLocaleTimeString()
 
     return (
