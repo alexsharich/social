@@ -16,6 +16,8 @@
   }
 }
 
-.item {
-  color: white;
+.loginBlock {
+float: right;
+color: white;
+margin: 10px;
 }

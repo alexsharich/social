@@ -1,7 +1,6 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
-import Header from './components/Header/Header';
 import { react } from '@babel/types';
 import NavBar from './components/Navbar/Navbar';
 import News from './components/News/News';
@@ -13,6 +12,7 @@ import DialogsContainer from './components/Dialogs/DialogsContainer';
 import UsersContainer from './components/User/UsersContainer';
 import ProfileContainer from './components/Profile/ProfileContainer';
 import Clock from './components/Clock/Clock';
+import HeaderContainer from './components/Header/HeaderContainer';
 
 function App() {
 
@@ -20,7 +20,7 @@ function App() {
     <BrowserRouter>
       <div className="App">
         <div className='app-wrapper'>
-          <Header />
+          <HeaderContainer />
           <NavBar />
           <div className='app-wrapper-content'>
             <Route path='/profile/:userId?' render={() => <ProfileContainer />} />

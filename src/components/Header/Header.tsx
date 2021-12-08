@@ -1,10 +1,23 @@
 import React from 'react';
-import './Header.css'
+import { NavLink } from 'react-router-dom';
+import { UserAuthDataType} from '../../state/authReducer';
 
-const Header = () => {
+import s from './Header.module.css'
+
+type HeaderPropsType = {
+  auth: UserAuthDataType
+}
+
+const Header = (props: HeaderPropsType) => {
   return (
-    <header className='header'>
+    <header className={s.header}>
       <img src='./logo512.png'></img>
+      <div className={s.loginBlock}>
+        {props.auth.isAuth 
+        ? props.auth.login
+        : <NavLink to={'/login'}>Login</NavLink>
+      }       
+      </div>
     </header>
   )
 }

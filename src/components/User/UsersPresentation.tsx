@@ -5,7 +5,7 @@ import { UserType } from '../../state/usersReducer'
 import { Preloader } from '../Preloader/Preloader'
 import { NavLink } from 'react-router-dom'
 
-type UsersPresntationType = {
+type UsersPresntationPropsType = {
     totalUsersCount: number
     pageSize: number
     onPageChanged: (p: number) => void
@@ -16,7 +16,7 @@ type UsersPresntationType = {
     isFetching: boolean 
 }
 
-export const UsersPresentation = (props: UsersPresntationType) => {
+export const UsersPresentation = (props: UsersPresntationPropsType) => {
     let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize)
 
     let pages = []

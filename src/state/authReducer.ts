@@ -1,19 +1,17 @@
 const SET_USER_DATA = 'SET-USER-DATA'
 
-
 const initialProfileState = {
-    id: null || 1,
-    login: null || '',
-    email: null || '',
+    data: null || {} as UserAuthDataType
 }
 
-type UserDataType = {
-    id: number
-    login: string
-    email: string
+export type UserAuthDataType = {
+    id: number | null
+    login: string | null
+    email: string | null
+    isAuth: boolean | null
 }
 
-type ActionsType = ReturnType<typeof setUserDataAC>
+type ActionsType = ReturnType<typeof setAuthUserData>
 
 export type initialProfileStateType = typeof initialProfileState
 
@@ -22,26 +20,17 @@ export const authReducer = (state: initialProfileStateType = initialProfileState
         case SET_USER_DATA:
             return {
                 ...state,
-                ...action.data
+                data: { ...action.data, isAuth: true }
             }
-
         default:
             return state
     }
 }
 
-/* export const setUserDataAC = (id: number, login: string, email: string) => {
+export const setAuthUserData = (data: UserAuthDataType) => {
     return {
         type: 'SET-USER-DATA',
-        id: id,
-        login: login,
-        email: email
-    } as const
-} */
-
-export const setUserDataAC = (data: UserDataType) => {
-    return {
-        type: 'SET-USER-DATA',
-        data 
+        data
     } as const
 }
+
