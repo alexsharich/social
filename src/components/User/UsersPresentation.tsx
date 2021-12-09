@@ -4,6 +4,7 @@ import userPhoto from '../../assets/images/user.png'
 import { UserType } from '../../state/usersReducer'
 import { Preloader } from '../Preloader/Preloader'
 import { NavLink } from 'react-router-dom'
+import axios from 'axios'
 
 type UsersPresntationPropsType = {
     totalUsersCount: number
@@ -13,7 +14,7 @@ type UsersPresntationPropsType = {
     currentPage: number
     follow: (buttonId: number) => void
     unfollow: (buttonId: number) => void
-    isFetching: boolean 
+    isFetching: boolean
 }
 
 export const UsersPresentation = (props: UsersPresntationPropsType) => {
@@ -26,46 +27,67 @@ export const UsersPresentation = (props: UsersPresntationPropsType) => {
     }
     return (
         <>
-        {props.isFetching ?   <Preloader/> : null}
-      
-        <div >
-            <div className={s.buttonsPages}>
-                {pages.map(p => {
-                    return <span onClick={() => { props.onPageChanged(p) }} className={props.currentPage === p ? s.selectedPage : ''}>{p}</span>
-                })}
-            </div>
+            {props.isFetching ? <Preloader /> : null}
 
-            {props.users.map(u => <div key={u.id} className={s.userBlock}>
-                <span>
-                    <div>
-                        <NavLink to={'/profile/'+u.id }>
-                        <img className={s.userImg} src={u.photos.small != null ? u.photos.small : userPhoto} />
-                        </NavLink>                       
-                    </div>    
-                </span>
-                <span>
+            <div >
+                <div className={s.buttonsPages}>
+                    {pages.map(p => {
+                        return <span onClick={() => { props.onPageChanged(p) }} className={props.currentPage === p ? s.selectedPage : ''}>{p}</span>
+                    })}
+                </div>
+
+                {props.users.map(u => <div key={u.id} className={s.userBlock}>
                     <span>
                         <div>
-                            {u.name}
-                            {u.status}
+                            <NavLink to={'/profile/' + u.id}>
+                                <img className={s.userImg} src={u.photos.small != null ? u.photos.small : userPhoto} />
+                            </NavLink>
                         </div>
                     </span>
                     <span>
-                        <div>{'u.location.city'}</div>
-                        <div>{'u.location.country'}</div>
+                        <span>
+                            <div>
+                                {u.name}
+                                {u.status}
+                            </div>
+                        </span>
+                        <span>
+                            <div>{'u.location.city'}</div>
+                            <div>{'u.location.country'}</div>
+                        </span>
+                        <div>{u.followed
+                            ? <button onClick={() => {
+                                axios.delete(`https://social-network.samuraijs.com/api/1.0/follow/${u.id}`, {
+                                    withCredentials: true,
+                                    headers: {
+                                        "API-KEY": "44d5e153-6a8e-4009-97fa-dc87b2117b60"
+                                    }
+                                })
+                                    .then(response => {
+                                        if (response.data.resultCode === 0) {
+                                            props.unfollow(u.id)
+                                        }
+                                    })
+                            }}>UnFollow</button>
+                            : <button onClick={() => {
+                                axios.post(`https://social-network.samuraijs.com/api/1.0/follow/${u.id}`, {}, {
+                                    withCredentials: true,
+                                    headers: {
+                                        "API-KEY": "44d5e153-6a8e-4009-97fa-dc87b2117b60"
+                                    }
+                                })
+                                    .then(response => {
+                                        if (response.data.resultCode === 0) {
+                                            props.follow(u.id)
+                                        }
+                                    })
+                            }}>Follow</button>}
+                        </div>
                     </span>
-                    <div>{
-                        u.followed
-                            ? <button onClick={() => { props.follow(u.id) }}>Follow</button>
-                            : <button onClick={() => { props.unfollow(u.id) }}>Unfollow</button>
-                    }
-                    </div>
-                </span>
+                </div>
+                )
+                }
             </div>
-            )
-            }
-            
-        </div>
-        </>      
+        </>
     )
 }

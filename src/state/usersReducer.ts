@@ -41,11 +41,11 @@ export const usersReducer = (state: initialUsersStateType = initialUsersState, a
     switch (action.type) {
         case FOLLOW:
             return {
-                ...state, users: state.users.map(u => u.id === action.userId ? { ...u, followed: false } : u)
+                ...state, users: state.users.map(u => u.id === action.userId ? { ...u, followed: true } : u)
             }
         case UNFOLLOW:
             return {
-                ...state, users: state.users.map(u => u.id === action.userId ? { ...u, followed: true } : u)
+                ...state, users: state.users.map(u => u.id === action.userId ? { ...u, followed: false } : u)
             }
         case SET_USERS:
             return {
