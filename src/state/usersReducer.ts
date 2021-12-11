@@ -7,6 +7,7 @@ const SET_USERS = 'SET-USERS'
 const SET_CURRENT_PAGE = 'SET-CURRENT-PAGE'
 const SET_TOTAL_USERS_COUNT = 'SET-TOTAL-USERS-COUNT'
 const TOGGLE_IS_FETCHING = 'TOGGLE-IS-FETCHING'
+const TOGGLE_IS_FOLLOWING_PROGRESS = 'TOGGLE-IS-FOLLOWING_PROGRESS'
 
 export type UserType = {
     name: string
@@ -25,7 +26,13 @@ type UserLocationType = {
     country: string
 }
 
-type ActionsType = ReturnType<typeof follow> | ReturnType<typeof unfollow> |ReturnType<typeof setUsers> | ReturnType<typeof setCurrentPage>| ReturnType<typeof setTotalUsersCount> |ReturnType<typeof toggleIsFetching> 
+type ActionsType = ReturnType<typeof follow>
+    | ReturnType<typeof unfollow>
+    | ReturnType<typeof setUsers>
+    | ReturnType<typeof setCurrentPage>
+    | ReturnType<typeof setTotalUsersCount>
+    | ReturnType<typeof toggleIsFetching>
+    | ReturnType<typeof toggleIsFollowingProgress>
 
 const initialUsersState = {
     users: [] as Array<UserType>,
@@ -33,6 +40,7 @@ const initialUsersState = {
     totalUsersCount: 0,
     currentPage: 1,
     isFetching: false,
+    followingProgress: [-1],
 }
 
 export type initialUsersStateType = typeof initialUsersState
@@ -66,6 +74,13 @@ export const usersReducer = (state: initialUsersStateType = initialUsersState, a
             return {
                 ...state,
                 isFetching: action.isFetching
+            }
+        case TOGGLE_IS_FOLLOWING_PROGRESS:
+            return {
+                ...state,
+                followingProgress: action.isFetching
+                ? [...state.followingProgress, action.userId]
+                : state.followingProgress.filter(id=>id != action.userId)
             }
         default:
             return state
@@ -106,5 +121,12 @@ export const toggleIsFetching = (isFetching: boolean) => {
     return {
         type: 'TOGGLE-IS-FETCHING',
         isFetching: isFetching
+    } as const
+}
+export const toggleIsFollowingProgress = (isFetching: boolean, userId: number) => {
+    return {
+        type: 'TOGGLE-IS-FOLLOWING_PROGRESS',
+        isFetching: isFetching,
+        userId:userId
     } as const
 }
