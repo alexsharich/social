@@ -62,8 +62,8 @@ export const UsersPresentation = (props: UsersPresntationPropsType) => {
                             ? <button disabled={props.followingProgress.some(id=>id === u.id)} onClick={() => {
                                 props.toggleIsFollowingProgress(true,u.id)
                                 usersAPI.unfollow(u.id)
-                                    .then(data => {
-                                        if (data.resultCode === 0) {
+                                    .then(response => {
+                                        if (response.data.resultCode === 0) {
                                             props.unfollow(u.id)
                                         }
                                         props.toggleIsFollowingProgress(false,u.id)
@@ -72,8 +72,8 @@ export const UsersPresentation = (props: UsersPresntationPropsType) => {
                             : <button disabled={props.followingProgress.some(id=>id ===u.id)} onClick={() => {
                                 props.toggleIsFollowingProgress(true,u.id)
                                 usersAPI.follow(u.id)
-                                    .then(data => {
-                                        if (data.resultCode === 0) {
+                                    .then(response => {
+                                        if (response.data.resultCode === 0) {
                                             props.follow(u.id)
                                         }
                                         props.toggleIsFollowingProgress(false,u.id)

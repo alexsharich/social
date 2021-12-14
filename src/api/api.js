@@ -10,28 +10,16 @@ const instatnce = axios.create({
 
 export const usersAPI = {
     getUsers(currentPage = 1, pageSize = 10) {
-        return instatnce.get(`users?page=${currentPage}&count=${pageSize}`, {
-            withCredentials: true
-        })
+        return instatnce.get(`users?page=${currentPage}&count=${pageSize}`)
             .then(response => {
                 return response.data
             })
     },
     follow(userId) {
-        return instatnce.post(`follow/${userId}`, {}, {
-            withCredentials: true
-        })
-            .then(response => {
-                return response.data
-            })
+        return instatnce.post(`follow/${userId}`)
     },
     unfollow(userId) {
-        return instatnce.delete(`follow/${userId}`, {
-            withCredentials: true
-        })
-            .then(response => {
-                return response.data
-            })
+        return instatnce.delete(`follow/${userId}`)
     },
 }
 
