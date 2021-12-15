@@ -21,6 +21,9 @@ export const usersAPI = {
     unfollow(userId) {
         return instatnce.delete(`follow/${userId}`)
     },
+    getProfile(userId){
+        return instatnce.get(`profile/${userId}`)
+    }
 }
 
 
