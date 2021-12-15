@@ -11,7 +11,7 @@ const initialProfileState = {
         { id: 3, message: 'Hello, John', likesCount: '1000' },
     ] as Array<PostType>,
     messageNewPostText: '',
-    profile: null || {} as ProfileUserType //////////////////////????
+    profile: {} as ProfileUserType //////////////////////????
 }
 type PostType = {
     id: number
@@ -19,30 +19,30 @@ type PostType = {
     likesCount: string
 }
 export type ProfileContactsType = {
-    facebook: string | null
-    website: string | null
-    vk: string | null
-    twitter: string | null
-    instagram: string | null
-    youtube: string | null
-    github: string | null
-    mainLink: string | null
+    facebook?: string
+    website?: string
+    vk?: string
+    twitter?: string
+    instagram?: string
+    youtube?: string
+    github?: string
+    mainLink?: string
 }
 export type ProfilePhotoType = {
-    small: string 
-    large: string 
+    small: string
+    large: string
 }
 export type ProfileUserType = {
-    aboutMe: string  | null
-    contacts: ProfileContactsType | null
-    lookingForAJob: boolean | null
-    lookingForAJobDescription: string | null
-    fullName: string | null
+    aboutMe?: string
+    contacts?: ProfileContactsType
+    lookingForAJob?: boolean
+    lookingForAJobDescription?: string
+    fullName?: string
     userId: 2
     photos: ProfilePhotoType
 }
 
-type ActionsType = ReturnType<typeof addPostAC> | ReturnType<typeof updateNewTextAC> | ReturnType<typeof setUserProfile> 
+type ActionsType = ReturnType<typeof addPostAC> | ReturnType<typeof updateNewTextAC> | ReturnType<typeof setUserProfile>
 
 export type initialProfileStateType = typeof initialProfileState
 

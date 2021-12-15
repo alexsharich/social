@@ -1,12 +1,14 @@
 import React, { ChangeEvent } from "react";
 import { connect } from "react-redux";
 import { Dispatch } from "redux";
+import { UserAuthDataType } from "../../state/authReducer";
 import { initialDialogsStateType, newDialogTextAC, sendNewDialogTextAC } from "../../state/dialogsReducer";
 import { AppStateType } from "../../state/redux-store";
 import Dialogs from "./Dialogs";
 
 type MapStateToProps = {
     dialogsPage: initialDialogsStateType
+    isAuth?: boolean
 }
 type MapDispatchToProps = {
     addNewDialog: (newDialogTextMessage: string) => void
@@ -17,6 +19,7 @@ export type DialogsPropsType = MapStateToProps & MapDispatchToProps
 const mapStateToProps = (state: AppStateType): MapStateToProps => {
     return {
         dialogsPage: state.dialogsPage,
+        isAuth: state.auth.data.isAuth
     }
 }
 const mapDispatchToProps = (dispatch: Dispatch): MapDispatchToProps => {

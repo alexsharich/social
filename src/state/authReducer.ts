@@ -1,14 +1,14 @@
 const SET_USER_DATA = 'SET-USER-DATA'
 
 const initialProfileState = {
-    data: null || {} as UserAuthDataType
+    data: {} as UserAuthDataType
 }
 
 export type UserAuthDataType = {
-    id: number | null
-    login: string | null
-    email: string | null
-    isAuth: boolean | null
+    id?: number 
+    login?: string 
+    email?: string 
+    isAuth?: boolean 
 }
 
 type ActionsType = ReturnType<typeof setAuthUserData>

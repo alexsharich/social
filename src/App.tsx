@@ -13,6 +13,7 @@ import UsersContainer from './components/User/UsersContainer';
 import ProfileContainer from './components/Profile/ProfileContainer';
 import Clock from './components/Clock/Clock';
 import HeaderContainer from './components/Header/HeaderContainer';
+import { Login } from './components/Login/Login';
 
 function App() {
 
@@ -30,6 +31,7 @@ function App() {
             <Route path='/news' render={() => <News />} />
             <Route path='/clock' render={() => <Clock />} />
             <Route path='/settings' render={() => <Settings />} />
+            <Route path='/login' render={() => <Login />} />
           </div>
           <Footer />
         </div>
