@@ -3,7 +3,6 @@ import { connect } from "react-redux";
 import { Dispatch } from "redux";
 import { AppStateType } from "../../state/redux-store";
 import { follow, initialUsersStateType, setCurrentPage, setTotalUsersCount, setUsers, toggleIsFetching, toggleIsFollowingProgress, unfollow, UserType } from "../../state/usersReducer";
-
 import { UsersPresentation } from "./UsersPresentation";
 import axios from 'axios'
 import { usersAPI } from "../../api/api";

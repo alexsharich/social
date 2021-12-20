@@ -1,6 +1,3 @@
-//import { ActionsType } from "./store"
-
-
 const FOLLOW = 'FOLLOW'
 const UNFOLLOW = 'UNFOLLOW'
 const SET_USERS = 'SET-USERS'
