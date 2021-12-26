@@ -10,7 +10,7 @@ const Clock = () => {
         let clockId = setInterval(() => {
             setTime(new Date())
         }, 1000)
- 
+
         return () => {
             clearInterval(clockId)
         }
@@ -22,6 +22,7 @@ const Clock = () => {
     return (
         <div className={s.newsBlock}>
             {clock}
+            <div>Analog</div>
         </div>
     )
 }
