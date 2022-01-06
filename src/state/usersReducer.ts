@@ -1,3 +1,7 @@
+import { Dispatch } from "redux"
+import { usersAPI } from "../api/api"
+import { AppStateType } from "./redux-store"
+
 const FOLLOW = 'FOLLOW'
 const UNFOLLOW = 'UNFOLLOW'
 const SET_USERS = 'SET-USERS'
@@ -126,4 +130,19 @@ export const toggleIsFollowingProgress = (isFetching: boolean, userId: number) =
         isFetching: isFetching,
         userId: userId
     } as const
+}
+
+
+
+export const getUsersThunkCreator = (currentPage: number, pageSize: number) => {
+    return async (dispatch: Dispatch<ActionsType>, getState: () => AppStateType) => {
+        dispatch(toggleIsFetching(true))
+
+        usersAPI.getUsers(currentPage, pageSize)
+            .then(data => {
+                dispatch(toggleIsFetching(false))
+                dispatch(setUsers(data.items))
+                dispatch(setTotalUsersCount(data.totalCount))
+            })
+    }
 }
