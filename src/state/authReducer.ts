@@ -1,3 +1,6 @@
+import { Dispatch } from "redux"
+import { authAPI } from "../api/api"
+
 const SET_USER_DATA = 'SET-USER-DATA'
 
 const initialProfileState = {
@@ -5,10 +8,10 @@ const initialProfileState = {
 }
 
 export type UserAuthDataType = {
-    id?: number 
-    login?: string 
-    email?: string 
-    isAuth?: boolean 
+    id?: number
+    login?: string
+    email?: string
+    isAuth?: boolean
 }
 
 type ActionsType = ReturnType<typeof setAuthUserData>
@@ -32,5 +35,15 @@ export const setAuthUserData = (data: UserAuthDataType) => {
         type: 'SET-USER-DATA',
         data
     } as const
+}
+export const getAuthUserData = () => {
+    return async (dispatch: Dispatch<ActionsType>) => {
+        authAPI.me()
+            .then(response => {
+                if (response.data.resultCode === 0) {
+                    dispatch(setAuthUserData(response.data.data))
+                }
+            })
+    }
 }
 
