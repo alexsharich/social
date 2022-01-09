@@ -1,7 +1,15 @@
 import React, { useEffect, useState } from "react";
-import s from './Clock.module.css'
+import { AnalogClock } from "./AnalogClock/AnalogClock";
+import { DigitalClock } from "./DigitalClock/DigitalClock";
 
-const Clock = () => {
+type ClockropsType = {
+    mode: 'analog' | 'digital'
+}
+export type ClockViewPropsType = {
+    time: Date
+}
+
+const Clock = (props: ClockropsType) => {
 
     let [time, setTime] = useState<Date>(new Date())
 
@@ -16,13 +24,15 @@ const Clock = () => {
         }
 
     }, [])
-
-    let clock = time?.toLocaleTimeString()
+    /* 
+        let digitalClock = time?.toLocaleTimeString()
+        let analogClock = 'analogClock' */
 
     return (
-        <div className={s.newsBlock}>
-            {clock}
-            <div>Analog</div>
+        <div>
+            {props.mode === 'digital'
+                ? <DigitalClock time={time} />
+                : <AnalogClock time={time} />}
         </div>
     )
 }
