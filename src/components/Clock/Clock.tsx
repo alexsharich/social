@@ -24,10 +24,7 @@ const Clock = (props: ClockropsType) => {
         }
 
     }, [])
-    /* 
-        let digitalClock = time?.toLocaleTimeString()
-        let analogClock = 'analogClock' */
-
+   
     return (
         <div>
             {props.mode === 'digital'

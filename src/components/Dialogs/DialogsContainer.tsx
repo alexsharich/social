@@ -1,7 +1,6 @@
-import React, { ChangeEvent } from "react";
+import React from "react";
 import { connect } from "react-redux";
 import { Dispatch } from "redux";
-import { UserAuthDataType } from "../../state/authReducer";
 import { initialDialogsStateType, newDialogTextAC, sendNewDialogTextAC } from "../../state/dialogsReducer";
 import { AppStateType } from "../../state/redux-store";
 import Dialogs from "./Dialogs";

@@ -29,7 +29,7 @@ function App() {
             <Route path='/users' render={() => <UsersContainer />} />
             <Route path='/music' render={() => <Music />} />
             <Route path='/news' render={() => <News />} />
-            <Route path='/clock' render={() => <Clock mode={'digital'}/>} />
+            <Route path='/clock' render={() => <Clock mode={'digital'} />} />
             <Route path='/settings' render={() => <Settings />} />
             <Route path='/login' render={() => <Login />} />
           </div>
