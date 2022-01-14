@@ -117,7 +117,6 @@ export const updateStatus = (status: string) => {
             if (response.data.resultCode === 0) {
                 dispatch(setStatusAC(status))
             }
-
         })
     }
 }
