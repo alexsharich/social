@@ -5,13 +5,15 @@ import MyPostsContainer from './MyPosts/MyPostsContainer';
 import { ProfileUserType } from '../../state/profileReducer';
 
 type ProfilePropsType = {
-profile: ProfileUserType
+  profile: ProfileUserType
+  status: string
+  updateStatus: (status: string) => void
 }
 
-const Profile = (props:ProfilePropsType) => {
+const Profile = (props: ProfilePropsType) => {
   return (
     <div>
-      <ProfileInfo profile={props.profile}/>
+      <ProfileInfo profile={props.profile} status={props.status} updateStatus={props.updateStatus} />
       <MyPostsContainer />
     </div>
   )
