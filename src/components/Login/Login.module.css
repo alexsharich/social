@@ -1,0 +1,4 @@
+.loginBlock{
+    display: flex;
+    flex-direction: column;
+}
