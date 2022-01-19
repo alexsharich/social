@@ -19,12 +19,6 @@ type MapDispatchToProps = {
 class HeaderContainer extends React.Component<HeaderContainerPropsType>{
   componentDidMount() {
     this.props.getAuthUserData()
-    /* authAPI.me()
-      .then(response => {
-        if (response.data.resultCode === 0) {
-          this.props.setAuthUserData(response.data.data)
-        }
-      }) */
   }
   render() {
     return (

@@ -17,7 +17,6 @@ type UsersPresntationPropsType = {
     unfollow: (buttonId: number) => void
     isFetching: boolean
     followingProgress: Array<number>
-    /*  toggleIsFollowingProgress: (isFetching: boolean, userId: number) => void */
 }
 
 export const UsersPresentation = (props: UsersPresntationPropsType) => {
@@ -57,25 +56,9 @@ export const UsersPresentation = (props: UsersPresntationPropsType) => {
                         <div>{u.followed
                             ? <button disabled={props.followingProgress.some(id => id === u.id)} onClick={() => {
                                 props.unfollow(u.id)
-                                /* props.toggleIsFollowingProgress(true, u.id)
-                               usersAPI.unfollow(u.id)
-                                   .then(response => {
-                                       if (response.data.resultCode === 0) {
-                                           props.unfollow(u.id)
-                                       }
-                                       props.toggleIsFollowingProgress(false, u.id)
-                                   }) */
                             }}>UnFollow</button>
                             : <button disabled={props.followingProgress.some(id => id === u.id)} onClick={() => {
                                 props.follow(u.id)
-                                /*  props.toggleIsFollowingProgress(true, u.id)
-                                usersAPI.follow(u.id)
-                                    .then(response => {
-                                        if (response.data.resultCode === 0) {
-                                            props.follow(u.id)
-                                        }
-                                        props.toggleIsFollowingProgress(false, u.id)
-                                    }) */
                             }}>Follow</button>}
                         </div>
                     </span>

@@ -9,7 +9,6 @@ export const Login = () => {
     return (
         <div className={s.loginBlock}>
             <h3>LOGIN</h3>
-            {/*  <LoginForm /> */}
             <LoginReduxForm onSubmit={onSubmit} />
         </div>
     )
