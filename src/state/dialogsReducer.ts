@@ -1,4 +1,4 @@
-const UPDATE_NEW_DIALOG_TEXT = 'UPDATE-NEW-DIALOG-TEXT'
+//const UPDATE_NEW_DIALOG_TEXT = 'UPDATE-NEW-DIALOG-TEXT'
 const SEND_NEW_DIALOG_TEXT = 'SEND-NEW-DIALOG-TEXT'
 
 type MessageType = {
@@ -10,7 +10,7 @@ type DialogType = {
     name: string
 }
 
-type ActionsType = ReturnType <typeof newDialogTextAC> | ReturnType <typeof sendNewDialogTextAC>
+type ActionsType = /* ReturnType <typeof newDialogTextAC> | */ ReturnType<typeof sendNewDialogTextAC>
 
 const initialDialogsState = {
     dialogsData: [
@@ -27,35 +27,35 @@ const initialDialogsState = {
         { id: 4, message: 'Yo' },
         { id: 5, message: 'Yo' },
     ] as Array<MessageType>,
-    newDialogText: ''
+    //newDialogText: ''
 }
 
 export type initialDialogsStateType = typeof initialDialogsState
 
 export const dialogsReducer = (state: initialDialogsStateType = initialDialogsState, action: ActionsType): initialDialogsStateType => {
     switch (action.type) {
-        case UPDATE_NEW_DIALOG_TEXT:
-            return { ...state, newDialogText: action.newDialogText }
+        /*  case UPDATE_NEW_DIALOG_TEXT:
+             return { ...state} *//* , newDialogText: action.newDialogText */
         case SEND_NEW_DIALOG_TEXT:
             const newDialog: MessageType = {
                 id: new Date().getTime(),
-                message: action.newDialogTextMessage
+                message: action.newMessageBody
             }
-            return { ...state, messagesData: [...state.messagesData, newDialog], newDialogText: '' }
+            return { ...state, messagesData: [...state.messagesData, newDialog]/* , newDialogText: '' */ }
         default:
             return state
     }
 }
 
-export const newDialogTextAC = (newDialogText: string) => {
+/* export const newDialogTextAC = (newDialogText: string) => {
     return {
         type: 'UPDATE-NEW-DIALOG-TEXT',
         newDialogText: newDialogText
     } as const
-}
-export const sendNewDialogTextAC = (newDialogTextMessage: string) => {
+} */
+export const sendNewDialogTextAC = (newMessageBody: string) => {
     return {
         type: 'SEND-NEW-DIALOG-TEXT',
-        newDialogTextMessage: newDialogTextMessage
+        newMessageBody: newMessageBody
     } as const
 }

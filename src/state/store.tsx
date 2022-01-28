@@ -1,4 +1,4 @@
-import { dialogsReducer, newDialogTextAC, sendNewDialogTextAC } from "./dialogsReducer"
+import { dialogsReducer, /* newDialogTextAC, */ sendNewDialogTextAC } from "./dialogsReducer"
 import { addPostAC, profileReducer, setUserProfile, updateNewTextAC } from "./profileReducer"
 import { follow, setCurrentPage, setTotalUsersCount, setUsers, toggleIsFetching, unfollow } from "./usersReducer"
 
@@ -37,7 +37,7 @@ type DialogType = {
 
 export type ActionsType = ReturnType<typeof addPostAC>
     | ReturnType<typeof updateNewTextAC>
-    | ReturnType<typeof newDialogTextAC>
+    /* | ReturnType<typeof newDialogTextAC> */
     | ReturnType<typeof sendNewDialogTextAC>
     | ReturnType<typeof follow>
     | ReturnType<typeof unfollow>
