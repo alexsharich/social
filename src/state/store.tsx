@@ -1,5 +1,5 @@
 import { dialogsReducer, /* newDialogTextAC, */ sendNewDialogTextAC } from "./dialogsReducer"
-import { addPostAC, profileReducer, setUserProfile, updateNewTextAC } from "./profileReducer"
+import { addPostAC, profileReducer, setUserProfile/* , updateNewTextAC */ } from "./profileReducer"
 import { follow, setCurrentPage, setTotalUsersCount, setUsers, toggleIsFetching, unfollow } from "./usersReducer"
 
 
@@ -13,7 +13,7 @@ export type StateType = {
 }
 export type PostsType = {
     posts: Array<PostType>
-    messageNewPostText: string
+    //messageNewPostText: string
     profile: any //////////////////////////////??????
 }
 export type DialogsPageType = {
@@ -36,7 +36,7 @@ type DialogType = {
 }
 
 export type ActionsType = ReturnType<typeof addPostAC>
-    | ReturnType<typeof updateNewTextAC>
+    /* | ReturnType<typeof updateNewTextAC> */
     /* | ReturnType<typeof newDialogTextAC> */
     | ReturnType<typeof sendNewDialogTextAC>
     | ReturnType<typeof follow>
@@ -63,7 +63,7 @@ export const store: StoreType = {
                 { id: 2, message: 'Don,t touch my dog', likesCount: '2' },
                 { id: 3, message: 'Hello, John', likesCount: '1000' },
             ],
-            messageNewPostText: '',
+            //messageNewPostText: '',
             profile: null //////////////////////????????????????
         },
         dialogsPage: {
@@ -108,10 +108,10 @@ export const store: StoreType = {
         console.log('state try to change')
     },
     dispatch(action: ActionsType) {
-////////////////////////////////////////////
+        ////////////////////////////////////////////
         /* this._state.profilePage = profileReducer(this._state.profilePage, action)
         this._state.dialogsPage = dialogsReducer(this._state.dialogsPage, action) */
-/////////////////////////////////////////
+        /////////////////////////////////////////
         this._renderTree(this._state)
 
         /* if (action.type === 'ADD-POST') {

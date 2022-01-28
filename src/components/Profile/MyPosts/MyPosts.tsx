@@ -1,4 +1,5 @@
 import React, { ChangeEvent } from 'react';
+import { Field, InjectedFormProps, reduxForm } from 'redux-form';
 import s from './MyPosts.module.css';
 import { MypostPropsType } from './MyPostsContainer';
 import Post from './Post/Post'
@@ -8,28 +9,28 @@ const MyPosts = (props: MypostPropsType) => {
 
     let postElement = props.profilePage.posts.map(p => <Post key={p.id} message={p.message} likeCounter={p.likesCount} />)
 
-    let onAddPost = () => {
+    /* let onAddPost = () => {
         let message = props.profilePage.messageNewPostText
         props.addPost(message)
     }
     const onPostChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
         let text = e.currentTarget.value
         props.updateNewPostText(text)
-    }
+    } */
 
+    const onAddPost = (values: any) => {
+        props.addPost(values.newPostText)
+    }
+    const onSubmit = (formData: AddNewPostFormProsType) => {
+        console.log(formData)
+    }
     return (
         < div >
             <div className={s.myPostName}>
                 My Posts
             </div>
             < div className={s.createTextPost}>
-                <textarea
-                    onChange={onPostChange}
-                    value={props.profilePage.messageNewPostText} />
-                <div className={s.textAreaButtons}>
-                    <button className={s.createPostButton} onClick={onAddPost}>Add Post</button>
-                    <button className={s.removePostButton}>Remove</button>
-                </div>
+                <AddNewPostReduxForm onSubmit={onAddPost} />
             </div >
             <div className={s.posts}>
                 {postElement}
@@ -37,5 +38,26 @@ const MyPosts = (props: MypostPropsType) => {
         </div >
     )
 }
+
+export type AddNewPostFormProsType = {
+    newPostText: string
+}
+
+const AddNewPostForm: React.FC<InjectedFormProps<AddNewPostFormProsType>> = (props) => {
+    return (
+        <form onSubmit={props.handleSubmit}>
+            <Field name='newPostText' component='textarea' />
+            {/* <textarea
+                onChange={onPostChange}
+                value={props.profilePage.messageNewPostText} /> */}
+            <div className={s.textAreaButtons}>
+                <button className={s.createPostButton} /* onClick={onAddPost} */>Add Post</button>
+                {/* <button className={s.removePostButton}>Remove</button> */}
+            </div>
+        </form>
+    )
+}
+
+const AddNewPostReduxForm = reduxForm<AddNewPostFormProsType>({ form: 'profileAddNewPostForm' })(AddNewPostForm)
 
 export default MyPosts;
