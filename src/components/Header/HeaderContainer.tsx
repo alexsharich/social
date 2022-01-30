@@ -2,8 +2,10 @@ import axios from 'axios';
 import React from 'react';
 import { connect } from 'react-redux';
 import { authAPI, usersAPI } from '../../api/api';
-import { getAuthUserData, logout, setAuthUserData, UserAuthDataType } from '../../state/authReducer';
+import { getAuthUserData, logout, UserAuthDataType } from '../../state/authReducer';
 import { AppStateType } from '../../state/redux-store';
+
+
 import Header from './Header';
 import s from './Header.module.css'
 
