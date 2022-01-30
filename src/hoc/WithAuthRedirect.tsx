@@ -9,7 +9,7 @@ type MapStateToPropsType = {
 
 let mapStateToProps = (state: AppStateType): MapStateToPropsType => {
     return {
-        isAuth: state.auth.data.isAuth
+        isAuth: state.auth.isAuth
     }
 }
 

@@ -13,7 +13,7 @@ import UsersContainer from './components/User/UsersContainer';
 import ProfileContainer from './components/Profile/ProfileContainer';
 import Clock from './components/Clock/Clock';
 import HeaderContainer from './components/Header/HeaderContainer';
-import { Login } from './components/Login/Login';
+import Login from './components/Login/Login';
 
 function App() {
 
