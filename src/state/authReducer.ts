@@ -1,6 +1,6 @@
 import { Dispatch } from "redux"
 import { ThunkAction } from "redux-thunk"
-import { authAPI } from "../api/api"
+import { authAPI, ResultCodeEnum } from "../api/api"
 import { AppStateType } from "./redux-store"
 
 const SET_USER_DATA = 'SET-USER-DATA'
@@ -14,7 +14,7 @@ const initialProfileState: UserAuthDataType = {
 }
 
 export type UserAuthDataType = {
-    id: string | null
+    id: number | null
     login: string | null
     email: string | null
     isAuth: boolean
@@ -42,7 +42,7 @@ export const authReducer = (state: initialProfileStateType = initialProfileState
     }
 }
 
-export const setAuthUserData = (userId: string | null, email: string | null, login: string | null, isAuth: boolean/* data:UserAuthDataType *//* id: number, login: string, email: string, isAuth: boolean */) => {
+export const setAuthUserData = (userId: number | null, email: string | null, login: string | null, isAuth: boolean/* data:UserAuthDataType *//* id: number, login: string, email: string, isAuth: boolean */) => {
     return {
         type: 'SET-USER-DATA',
         payload: {
@@ -57,8 +57,8 @@ export const getAuthUserData = () => {
     return (dispatch: Dispatch<ActionsType>) => {
         authAPI.me()
             .then(response => {
-                let { id, email, login } = response.data
-                if (response.data.resultCode === 0) {
+                let { id, email, login } = response.data.data
+                if (response.data.resultCode === ResultCodeEnum.Success) {
                     dispatch(setAuthUserData(id, email, login, true))
                 }
             })
@@ -68,7 +68,7 @@ export const login = (email: string, password: string, rememberMe: boolean) : Th
     return (dispatch) => {
         authAPI.login(email, password, rememberMe)
             .then(response => {
-                if (response.data.resultCode === 0) {
+                if (response.data.resultCode === ResultCodeEnum.Success) {
                     dispatch(getAuthUserData())
                 }
             })
@@ -78,7 +78,7 @@ export const logout = () => {
     return (dispatch: Dispatch<ActionsType>) => {
         authAPI.logout()
             .then(response => {
-                if (response.data.resultCode === 0) {
+                if (response.data.resultCode === ResultCodeEnum.Success) {
                     dispatch(setAuthUserData(null, null, null, false))
                 }
             })

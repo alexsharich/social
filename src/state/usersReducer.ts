@@ -1,5 +1,5 @@
 import { Dispatch } from "redux"
-import { usersAPI } from "../api/api"
+import { ResultCodeEnum, usersAPI, UserType } from "../api/api"
 import { AppStateType } from "./redux-store"
 
 const FOLLOW = 'FOLLOW'
@@ -10,14 +10,14 @@ const SET_TOTAL_USERS_COUNT = 'SET-TOTAL-USERS-COUNT'
 const TOGGLE_IS_FETCHING = 'TOGGLE-IS-FETCHING'
 const TOGGLE_IS_FOLLOWING_PROGRESS = 'TOGGLE-IS-FOLLOWING_PROGRESS'
 
-export type UserType = {
+/* export type UserType = {
     name: string
     id: number
     photos: PhotoUserType
     status: string
     followed: boolean
-    location: UserLocationType
-}
+    //location: UserLocationType
+} */
 type PhotoUserType = {
     small: string
     large: string
@@ -151,7 +151,7 @@ export const follow = (userId: number) => {
         dispatch(toggleIsFollowingProgress(true, userId))
         usersAPI.follow(userId)
             .then(response => {
-                if (response.data.resultCode === 0) {
+                if (response.data.resultCode === ResultCodeEnum.Success) {
                     dispatch(followSuccess(userId))
                 }
                 dispatch(toggleIsFollowingProgress(false, userId))
@@ -163,7 +163,7 @@ export const unfollow = (userId: number) => {
         dispatch(toggleIsFollowingProgress(true, userId))
         usersAPI.unfollow(userId)
             .then(response => {
-                if (response.data.resultCode === 0) {
+                if (response.data.resultCode === ResultCodeEnum.Success) {
                     dispatch(unfollowSuccess(userId))
                 }
                 dispatch(toggleIsFollowingProgress(false, userId))

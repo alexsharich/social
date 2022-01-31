@@ -1,5 +1,5 @@
 import { Dispatch } from "redux"
-import { profileAPI, usersAPI } from "../api/api"
+import { profileAPI, ResultCodeEnum, usersAPI } from "../api/api"
 
 const ADD_POST = 'ADD-POST'
 //const UPDATE_NEW_TEXT = 'UPDATE-NEW-TEXT'
@@ -97,14 +97,14 @@ export const setUserProfile = (profile: any) => {
         profile: profile
     } as const
 }
-export const getUserProfile = (userId: string) => {
+export const getUserProfile = (userId: number) => {
     return async (dispatch: Dispatch<ActionsType>) => {
         usersAPI.getProfile(userId).then(response => {
             dispatch(setUserProfile(response.data))
         })
     }
 }
-export const getStatus = (userId: string) => {
+export const getStatus = (userId: number) => {
     return async (dispatch: Dispatch<ActionsType>) => {
         profileAPI.getStatus(userId).then(response => {
             dispatch(setStatusAC(response.data))
@@ -114,7 +114,7 @@ export const getStatus = (userId: string) => {
 export const updateStatus = (status: string) => {
     return async (dispatch: Dispatch<ActionsType>) => {
         profileAPI.updateStatus(status).then(response => {
-            if (response.data.resultCode === 0) {
+            if (response.data.resultCode === ResultCodeEnum.Success) {
                 dispatch(setStatusAC(status))
             }
         })

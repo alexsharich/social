@@ -1,8 +1,9 @@
 import React, { ChangeEvent } from "react";
 import { connect } from "react-redux";
 import { Dispatch } from "redux";
+import { UserType } from "../../api/api";
 import { AppStateType } from "../../state/redux-store";
-import { follow, getUsersThunkCreator, initialUsersStateType, setCurrentPage, setUsers, toggleIsFollowingProgress, unfollow, UserType } from "../../state/usersReducer";
+import { follow, getUsersThunkCreator, initialUsersStateType, setCurrentPage, setUsers, toggleIsFollowingProgress, unfollow } from "../../state/usersReducer";
 import { UsersPresentation } from "./UsersPresentation";
 
 type MapStateToProps = {
