@@ -11,15 +11,6 @@ const MyPosts = (props: MypostPropsType) => {
 
     let postElement = props.profilePage.posts.map(p => <Post key={p.id} message={p.message} likeCounter={p.likesCount} />)
 
-    /* let onAddPost = () => {
-        let message = props.profilePage.messageNewPostText
-        props.addPost(message)
-    }
-    const onPostChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
-        let text = e.currentTarget.value
-        props.updateNewPostText(text)
-    } */
-
     const onAddPost = (values: any) => {
         props.addPost(values.newPostText)
     }
@@ -50,16 +41,14 @@ const maxLength10 = maxLengthCreator(10)
 const AddNewPostForm: React.FC<InjectedFormProps<AddNewPostFormProsType>> = (props) => {
     return (
         <form onSubmit={props.handleSubmit}>
-            <Field name='newPostText' 
-            component={Textarea} 
-            validate={[required, maxLength10]}
-            placeholder={'Post message'}/>
-            {/* <textarea
-                onChange={onPostChange}
-                value={props.profilePage.messageNewPostText} /> */}
+            <Field name='newPostText'
+                component={Textarea}
+                validate={[required, maxLength10]}
+                placeholder={'Post message'} />
+
             <div className={s.textAreaButtons}>
-                <button className={s.createPostButton} /* onClick={onAddPost} */>Add Post</button>
-                {/* <button className={s.removePostButton}>Remove</button> */}
+                <button className={s.createPostButton} >Add Post</button>
+
             </div>
         </form>
     )

@@ -6,7 +6,6 @@ import { AppStateType } from "./redux-store"
 const SET_USER_DATA = 'SET-USER-DATA'
 
 const initialProfileState: UserAuthDataType = {
-    //data: {} as UserAuthDataType
     id: null,
     login: null,
     email: null,
@@ -30,12 +29,6 @@ export const authReducer = (state: initialProfileStateType = initialProfileState
             return {
                 ...state,
                 ...action.payload,
-                //isAuth: true
-                //data: { ...action.data }
-                /*  id: action.id,
-                 login: action.login,
-                 email: action.email,
-                 isAuth: action.isAuth */
             }
         default:
             return state
@@ -53,6 +46,7 @@ export const setAuthUserData = (userId: number | null, email: string | null, log
         }
     } as const
 }
+
 export const getAuthUserData = () => {
     return (dispatch: Dispatch<ActionsType>) => {
         authAPI.me()
@@ -64,6 +58,7 @@ export const getAuthUserData = () => {
             })
     }
 }
+
 export const login = (email: string, password: string, rememberMe: boolean) : ThunkAction<void,AppStateType,unknown,ActionsType> => {
     return (dispatch) => {
         authAPI.login(email, password, rememberMe)
@@ -74,6 +69,7 @@ export const login = (email: string, password: string, rememberMe: boolean) : Th
             })
     }
 }
+
 export const logout = () => {
     return (dispatch: Dispatch<ActionsType>) => {
         authAPI.logout()

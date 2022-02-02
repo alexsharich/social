@@ -22,7 +22,6 @@ const Post: React.FC<MessageType> = (props) => {
                 </div>
             </div>
         </div>
-
     )
 }
 

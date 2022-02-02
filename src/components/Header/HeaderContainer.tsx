@@ -5,7 +5,6 @@ import { authAPI, usersAPI } from '../../api/api';
 import { getAuthUserData, logout, UserAuthDataType } from '../../state/authReducer';
 import { AppStateType } from '../../state/redux-store';
 
-
 import Header from './Header';
 import s from './Header.module.css'
 
@@ -35,6 +34,5 @@ const mapStateToProps = (state: AppStateType): MapStateToProps => {
     auth: state.auth
   }
 }
-
 
 export default connect(mapStateToProps, { getAuthUserData,logout })(HeaderContainer);

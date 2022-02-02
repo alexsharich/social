@@ -10,14 +10,6 @@ const SET_TOTAL_USERS_COUNT = 'SET-TOTAL-USERS-COUNT'
 const TOGGLE_IS_FETCHING = 'TOGGLE-IS-FETCHING'
 const TOGGLE_IS_FOLLOWING_PROGRESS = 'TOGGLE-IS-FOLLOWING_PROGRESS'
 
-/* export type UserType = {
-    name: string
-    id: number
-    photos: PhotoUserType
-    status: string
-    followed: boolean
-    //location: UserLocationType
-} */
 type PhotoUserType = {
     small: string
     large: string
@@ -94,36 +86,42 @@ export const followSuccess = (userId: number) => {
         userId: userId
     } as const
 }
+
 export const unfollowSuccess = (userId: number) => {
     return {
         type: 'UNFOLLOW',
         userId: userId
     } as const
 }
+
 export const setUsers = (users: Array<UserType>) => {
     return {
         type: 'SET-USERS',
         users: users
     } as const
 }
+
 export const setCurrentPage = (currentPage: number) => {
     return {
         type: 'SET-CURRENT-PAGE',
         currentPage: currentPage
     } as const
 }
+
 export const setTotalUsersCount = (totalCount: number) => {
     return {
         type: 'SET-TOTAL-USERS-COUNT',
         totalCount: totalCount
     } as const
 }
+
 export const toggleIsFetching = (isFetching: boolean) => {
     return {
         type: 'TOGGLE-IS-FETCHING',
         isFetching: isFetching
     } as const
 }
+
 export const toggleIsFollowingProgress = (isFetching: boolean, userId: number) => {
     return {
         type: 'TOGGLE-IS-FOLLOWING_PROGRESS',
@@ -132,11 +130,9 @@ export const toggleIsFollowingProgress = (isFetching: boolean, userId: number) =
     } as const
 }
 
-
 export const getUsersThunkCreator = (currentPage: number, pageSize: number) => {
     return async (dispatch: Dispatch<ActionsType>, getState: () => AppStateType) => {
         dispatch(toggleIsFetching(true))
-
         usersAPI.getUsers(currentPage, pageSize)
             .then(data => {
                 dispatch(toggleIsFetching(false))
@@ -158,6 +154,7 @@ export const follow = (userId: number) => {
             })
     }
 }
+
 export const unfollow = (userId: number) => {
     return async (dispatch: Dispatch<ActionsType>, getState: () => AppStateType) => {
         dispatch(toggleIsFollowingProgress(true, userId))
