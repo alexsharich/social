@@ -8,7 +8,7 @@ import { NavLink } from 'react-router-dom'
 
 const Users = (props: UsersPropsType) => {
     const getUsers = () => {
-        if (props.usersPage.users.length === 0) {
+        if (props.users.length === 0) {
             axios.get('https://social-network.samuraijs.com/api/1.0/users').then(response => {
                 props.setUsers(response.data.items)
             })
@@ -18,7 +18,7 @@ const Users = (props: UsersPropsType) => {
     return (
         <div>
             <button onClick={getUsers}>GET USERS</button>
-            {props.usersPage.users.map(u => <div key={u.id}>
+            {props.users.map(u => <div key={u.id}>
                 <span>
                     <div>
                         <img className={s.userImg} src={u.photos.small != null ? u.photos.small : userPhoto} />
