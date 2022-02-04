@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { Dispatch } from 'redux';
 import { addPostAC } from '../../../state/profileReducer';
 import { AppStateType } from '../../../state/redux-store';
+import { profilePageSelector } from '../../../state/selectors';
 import { PostsType } from '../../../state/store';
 import MyPosts from './MyPosts';
 
@@ -17,7 +18,7 @@ export type MypostPropsType = MapStateToProps & MapDispatchToProps
 
 const mapStateToProps = (state: AppStateType): MapStateToProps => {
     return {
-        profilePage: state.profilePage
+        profilePage: profilePageSelector(state)
     }
 }
 const mapDispatchToProps = (dispatch: Dispatch): MapDispatchToProps => {

@@ -9,6 +9,7 @@ import { Redirect, RouteComponentProps, withRouter } from 'react-router-dom';
 import { usersAPI } from '../../api/api';
 import { WithAuthRedirect } from '../../hoc/WithAuthRedirect';
 import { compose } from 'redux';
+import { profileSelector, statusSelector } from '../../state/selectors';
 
 type PathParamsType = {
   userId: string
@@ -45,8 +46,8 @@ class ProfileContainer extends React.Component<PropsType> {
 
 let mapStateToProps = (state: AppStateType): MapStateToProps => {
   return {
-    profile: state.profilePage.profile,
-    status: state.profilePage.status
+    profile: profileSelector(state),
+    status: statusSelector(state)
   }
 }
 

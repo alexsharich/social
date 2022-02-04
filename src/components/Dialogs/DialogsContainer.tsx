@@ -4,6 +4,7 @@ import { Dispatch } from "redux";
 import { initialDialogsStateType, sendNewDialogTextAC } from "../../state/dialogsReducer";
 
 import { AppStateType } from "../../state/redux-store";
+import { dialogsPageSelector, isAuthSelector } from "../../state/selectors";
 
 import Dialogs from "./Dialogs";
 
@@ -19,18 +20,15 @@ export type DialogsPropsType = MapStateToProps & MapDispatchToProps
 
 const mapStateToProps = (state: AppStateType): MapStateToProps => {
     return {
-        dialogsPage: state.dialogsPage,
-        isAuth: state.auth.isAuth
+        dialogsPage: dialogsPageSelector(state),
+        isAuth: isAuthSelector(state)
     }
 }
 const mapDispatchToProps = (dispatch: Dispatch): MapDispatchToProps => {
     return {
         addNewDialog: (newMessageBody: string) => {
             dispatch(sendNewDialogTextAC(newMessageBody))
-        }/* ,
-        changeNewDialogTextHandler: (newDialogText: string) => {
-            dispatch(newDialogTextAC(newDialogText))
-        } */
+        }
     }
 }
 
