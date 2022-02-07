@@ -46,4 +46,5 @@ const Users = (props: UsersPropsType) => {
         </div>
     )
 }
+
 export default Users

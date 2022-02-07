@@ -23,6 +23,7 @@ const Login = (props: PropsForLogin) => {
         </div>
     )
 }
+
 type MapStateToProps = {
     isAuth: boolean
 }

@@ -1,10 +1,8 @@
 import React from 'react'
 import s from './Users.module.css'
 import userPhoto from '../../assets/images/user.png'
-
 import { Preloader } from '../Preloader/Preloader'
 import { NavLink } from 'react-router-dom'
-import axios from 'axios'
 import { usersAPI, UserType } from '../../api/api'
 
 type UsersPresntationPropsType = {

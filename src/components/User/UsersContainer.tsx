@@ -8,7 +8,7 @@ import { follow, getUsersThunkCreator, initialUsersStateType, setCurrentPage, se
 import { UsersPresentation } from "./UsersPresentation";
 
 type MapStateToProps = {
-    users:Array<UserType>
+    users: Array<UserType>
     pageSize: number
     totalUsersCount: number
     currentPage: number
@@ -24,21 +24,17 @@ type MapDispatchToProps = {
 }
 export type UsersPropsType = MapStateToProps & MapDispatchToProps
 
-
 class UsersAPI extends React.Component<UsersPropsType> {
 
     componentDidMount(): void {
-
         this.props.getUsersThunkCreator(this.props.currentPage, this.props.pageSize)
     }
 
     onPageChanged = (pageNumber: number) => {
-
         this.props.getUsersThunkCreator(pageNumber, this.props.pageSize)
     }
 
     render() {
-
         return <UsersPresentation totalUsersCount={this.props.totalUsersCount}
             pageSize={this.props.pageSize}
             onPageChanged={this.onPageChanged}
@@ -51,7 +47,6 @@ class UsersAPI extends React.Component<UsersPropsType> {
         />
     }
 }
-
 
 const mapStateToProps = (state: AppStateType): MapStateToProps => {
     return {

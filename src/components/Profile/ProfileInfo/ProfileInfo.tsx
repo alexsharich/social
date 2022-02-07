@@ -50,4 +50,5 @@ const ProfileInfo = (props: ProfileInfoPropsType) => {
         </div>
     )
 }
+
 export default ProfileInfo;

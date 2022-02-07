@@ -2,10 +2,8 @@ import React from "react";
 import { connect } from "react-redux";
 import { Dispatch } from "redux";
 import { initialDialogsStateType, sendNewDialogTextAC } from "../../state/dialogsReducer";
-
 import { AppStateType } from "../../state/redux-store";
 import { dialogsPageSelector, isAuthSelector } from "../../state/selectors";
-
 import Dialogs from "./Dialogs";
 
 type MapStateToProps = {
@@ -14,7 +12,6 @@ type MapStateToProps = {
 }
 type MapDispatchToProps = {
     addNewDialog: (newDialogTextMessage: string) => void
-    //changeNewDialogTextHandler: (newDialogText: string) => void
 }
 export type DialogsPropsType = MapStateToProps & MapDispatchToProps
 

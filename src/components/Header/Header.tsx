@@ -1,8 +1,6 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { UserAuthDataType } from '../../state/authReducer';
-
-
 import s from './Header.module.css'
 
 type HeaderPropsType = {
