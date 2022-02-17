@@ -7,7 +7,7 @@ import { MypostPropsType } from './MyPostsContainer';
 import Post from './Post/Post'
 
 
-const MyPosts = (props: MypostPropsType) => {
+const MyPosts = React.memo((props: MypostPropsType) => {
 
     let postElement = props.profilePage.posts.map(p => <Post key={p.id} message={p.message} likeCounter={p.likesCount} />)
 
@@ -30,7 +30,7 @@ const MyPosts = (props: MypostPropsType) => {
             </div>
         </div >
     )
-}
+})
 
 export type AddNewPostFormProsType = {
     newPostText: string
