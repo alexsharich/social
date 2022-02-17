@@ -3,7 +3,7 @@ import { ThunkAction } from "redux-thunk"
 import { authAPI, ResultCodeEnum } from "../api/api"
 import { AppStateType } from "./redux-store"
 
-const SET_USER_DATA = 'SET-USER-DATA'
+const SET_USER_DATA = 'AUTH/SET-USER-DATA'
 
 const initialProfileState: UserAuthDataType = {
     id: null,
@@ -37,7 +37,7 @@ export const authReducer = (state: initialProfileStateType = initialProfileState
 
 export const setAuthUserData = (userId: number | null, email: string | null, login: string | null, isAuth: boolean/* data:UserAuthDataType *//* id: number, login: string, email: string, isAuth: boolean */) => {
     return {
-        type: 'SET-USER-DATA',
+        type: 'AUTH/SET-USER-DATA',
         payload: {
             userId,
             email,

@@ -1,4 +1,4 @@
-const SEND_NEW_DIALOG_TEXT = 'SEND-NEW-DIALOG-TEXT'
+const SEND_NEW_DIALOG_TEXT = 'DIALOGS/SEND-NEW-DIALOG-TEXT'
 
 type MessageType = {
     id: number
@@ -45,7 +45,7 @@ export const dialogsReducer = (state: initialDialogsStateType = initialDialogsSt
 
 export const sendNewDialogTextAC = (newMessageBody: string) => {
     return {
-        type: 'SEND-NEW-DIALOG-TEXT',
+        type: 'DIALOGS/SEND-NEW-DIALOG-TEXT',
         newMessageBody: newMessageBody
     } as const
 }

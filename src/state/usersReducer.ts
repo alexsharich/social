@@ -2,13 +2,13 @@ import { Dispatch } from "redux"
 import { ResultCodeEnum, usersAPI, UserType } from "../api/api"
 import { AppStateType } from "./redux-store"
 
-const FOLLOW = 'FOLLOW'
-const UNFOLLOW = 'UNFOLLOW'
-const SET_USERS = 'SET-USERS'
-const SET_CURRENT_PAGE = 'SET-CURRENT-PAGE'
-const SET_TOTAL_USERS_COUNT = 'SET-TOTAL-USERS-COUNT'
-const TOGGLE_IS_FETCHING = 'TOGGLE-IS-FETCHING'
-const TOGGLE_IS_FOLLOWING_PROGRESS = 'TOGGLE-IS-FOLLOWING_PROGRESS'
+const FOLLOW = 'USERS/FOLLOW'
+const UNFOLLOW = 'USERS/UNFOLLOW'
+const SET_USERS = 'USERS/SET-USERS'
+const SET_CURRENT_PAGE = 'USERS/SET-CURRENT-PAGE'
+const SET_TOTAL_USERS_COUNT = 'USERS/SET-TOTAL-USERS-COUNT'
+const TOGGLE_IS_FETCHING = 'USERS/TOGGLE-IS-FETCHING'
+const TOGGLE_IS_FOLLOWING_PROGRESS = 'USERS/TOGGLE-IS-FOLLOWING_PROGRESS'
 
 type PhotoUserType = {
     small: string
@@ -82,49 +82,49 @@ export const usersReducer = (state: initialUsersStateType = initialUsersState, a
 
 export const followSuccess = (userId: number) => {
     return {
-        type: 'FOLLOW',
+        type: 'USERS/FOLLOW',
         userId: userId
     } as const
 }
 
 export const unfollowSuccess = (userId: number) => {
     return {
-        type: 'UNFOLLOW',
+        type: 'USERS/UNFOLLOW',
         userId: userId
     } as const
 }
 
 export const setUsers = (users: Array<UserType>) => {
     return {
-        type: 'SET-USERS',
+        type: 'USERS/SET-USERS',
         users: users
     } as const
 }
 
 export const setCurrentPage = (currentPage: number) => {
     return {
-        type: 'SET-CURRENT-PAGE',
+        type: 'USERS/SET-CURRENT-PAGE',
         currentPage: currentPage
     } as const
 }
 
 export const setTotalUsersCount = (totalCount: number) => {
     return {
-        type: 'SET-TOTAL-USERS-COUNT',
+        type: 'USERS/SET-TOTAL-USERS-COUNT',
         totalCount: totalCount
     } as const
 }
 
 export const toggleIsFetching = (isFetching: boolean) => {
     return {
-        type: 'TOGGLE-IS-FETCHING',
+        type: 'USERS/TOGGLE-IS-FETCHING',
         isFetching: isFetching
     } as const
 }
 
 export const toggleIsFollowingProgress = (isFetching: boolean, userId: number) => {
     return {
-        type: 'TOGGLE-IS-FOLLOWING_PROGRESS',
+        type: 'USERS/TOGGLE-IS-FOLLOWING_PROGRESS',
         isFetching: isFetching,
         userId: userId
     } as const

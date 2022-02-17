@@ -1,9 +1,10 @@
 import { Dispatch } from "redux"
 import { profileAPI, ResultCodeEnum, usersAPI } from "../api/api"
 
-const ADD_POST = 'ADD-POST'
-const SET_USER_PROFILE = 'SET-USER-PROFILE'
-const SET_STATUS = 'SET-STATUS'
+const ADD_POST = 'PROFILE/ADD-POST'
+const SET_USER_PROFILE = 'PROFILE/SET-USER-PROFILE'
+const SET_STATUS = 'PROFILE/SET-STATUS'
+const DELETE_POST='PROFILE/DELETE-POST'
 
 const initialProfileState = {
     posts: [
@@ -67,7 +68,7 @@ export const profileReducer = (state: initialProfileStateType = initialProfileSt
         case SET_STATUS: {
             return { ...state, status: action.status }
         }
-        case 'DELETE-POST': {
+        case DELETE_POST: {
             return { ...state, posts: state.posts.filter(p => p.id !== action.postId) }
         }
         default:
@@ -77,27 +78,27 @@ export const profileReducer = (state: initialProfileStateType = initialProfileSt
 
 export const addPostAC = (newPostText: string) => {
     return {
-        type: 'ADD-POST',
+        type: 'PROFILE/ADD-POST',
         newPostText: newPostText
     } as const
 }
 
 export const setStatusAC = (status: string) => {
     return {
-        type: 'SET-STATUS',
+        type: 'PROFILE/SET-STATUS',
         status: status
     } as const
 }
 
 export const setUserProfile = (profile: any) => {
     return {
-        type: 'SET-USER-PROFILE',
+        type: 'PROFILE/SET-USER-PROFILE',
         profile: profile
     } as const
 }
 export const deletePostAC = (postId: number) => {
     return {
-        type: 'DELETE-POST',
+        type: 'PROFILE/DELETE-POST',
         postId: postId
     } as const
 }
