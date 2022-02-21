@@ -4,7 +4,7 @@ import { profileAPI, ResultCodeEnum, usersAPI } from "../api/api"
 const ADD_POST = 'PROFILE/ADD-POST'
 const SET_USER_PROFILE = 'PROFILE/SET-USER-PROFILE'
 const SET_STATUS = 'PROFILE/SET-STATUS'
-const DELETE_POST='PROFILE/DELETE-POST'
+const DELETE_POST = 'PROFILE/DELETE-POST'
 
 const initialProfileState = {
     posts: [
@@ -105,26 +105,23 @@ export const deletePostAC = (postId: number) => {
 
 export const getUserProfile = (userId: number) => {
     return async (dispatch: Dispatch<ActionsType>) => {
-        usersAPI.getProfile(userId).then(response => {
-            dispatch(setUserProfile(response.data))
-        })
+        let response = await usersAPI.getProfile(userId)
+        dispatch(setUserProfile(response.data))
     }
 }
 
 export const getStatus = (userId: number) => {
     return async (dispatch: Dispatch<ActionsType>) => {
-        profileAPI.getStatus(userId).then(response => {
-            dispatch(setStatusAC(response.data))
-        })
+        let response = await profileAPI.getStatus(userId)
+        dispatch(setStatusAC(response.data))
     }
 }
 
 export const updateStatus = (status: string) => {
     return async (dispatch: Dispatch<ActionsType>) => {
-        profileAPI.updateStatus(status).then(response => {
-            if (response.data.resultCode === ResultCodeEnum.Success) {
-                dispatch(setStatusAC(status))
-            }
-        })
+        let response = await profileAPI.updateStatus(status)
+        if (response.data.resultCode === ResultCodeEnum.Success) {
+            dispatch(setStatusAC(status))
+        }
     }
 }

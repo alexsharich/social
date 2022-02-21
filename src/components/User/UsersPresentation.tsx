@@ -4,6 +4,8 @@ import userPhoto from '../../assets/images/user.png'
 import { Preloader } from '../Preloader/Preloader'
 import { NavLink } from 'react-router-dom'
 import { usersAPI, UserType } from '../../api/api'
+import { Paginator } from './Paginator'
+import { User } from './User'
 
 type UsersPresntationPropsType = {
     totalUsersCount: number
@@ -17,26 +19,35 @@ type UsersPresntationPropsType = {
     followingProgress: Array<number>
 }
 
-export const UsersPresentation = (props: UsersPresntationPropsType) => {
-    let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize)
+export const UsersPresentation = ({ totalUsersCount, pageSize, onPageChanged, currentPage, ...props }: UsersPresntationPropsType) => {
+    /* let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize)
 
     let pages = []
 
     for (let i = 1; i <= pagesCount; i++) {
         pages.push(i)
-    }
+    } */
     return (
         <>
             {props.isFetching ? <Preloader /> : null}
 
             <div >
-                <div className={s.buttonsPages}>
+                {/* <div className={s.buttonsPages}>
                     {pages.map(p => {
                         return <span onClick={() => { props.onPageChanged(p) }} className={props.currentPage === p ? s.selectedPage : ''}>{p}</span>
                     })}
-                </div>
-
-                {props.users.map(u => <div key={u.id} className={s.userBlock}>
+                </div> */}
+                <Paginator totalUsersCount={totalUsersCount}
+                    pageSize={pageSize}
+                    onPageChanged={onPageChanged}
+                    currentPage={currentPage} />
+                <div>
+                    {props.users.map(u => <User follow={props.follow}
+                        unfollow={props.unfollow}
+                        user={u}
+                        followingProgress={props.followingProgress}
+                        key={u.id} />
+                        , {/* <div key={u.id} className={s.userBlock}>
                     <span>
                         <div>
                             <NavLink to={'/profile/' + u.id}>
@@ -60,9 +71,10 @@ export const UsersPresentation = (props: UsersPresntationPropsType) => {
                             }}>Follow</button>}
                         </div>
                     </span>
+                </div> */}
+                    )
+                    }
                 </div>
-                )
-                }
             </div>
         </>
     )

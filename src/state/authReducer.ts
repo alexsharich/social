@@ -48,35 +48,29 @@ export const setAuthUserData = (userId: number | null, email: string | null, log
 }
 
 export const getAuthUserData = () => {
-    return (dispatch: Dispatch<ActionsType>) => {
-        authAPI.me()
-            .then(response => {
-                let { id, email, login } = response.data.data
-                if (response.data.resultCode === ResultCodeEnum.Success) {
-                    dispatch(setAuthUserData(id, email, login, true))
-                }
-            })
+    return async (dispatch: Dispatch<ActionsType>) => {
+        let response = await authAPI.me()
+        let { id, email, login } = response.data.data
+        if (response.data.resultCode === ResultCodeEnum.Success) {
+            dispatch(setAuthUserData(id, email, login, true))
+        }
     }
 }
 
-export const login = (email: string, password: string, rememberMe: boolean) : ThunkAction<void,AppStateType,unknown,ActionsType> => {
-    return (dispatch) => {
-        authAPI.login(email, password, rememberMe)
-            .then(response => {
-                if (response.data.resultCode === ResultCodeEnum.Success) {
-                    dispatch(getAuthUserData())
-                }
-            })
+export const login = (email: string, password: string, rememberMe: boolean): ThunkAction<void, AppStateType, unknown, ActionsType> => {
+    return async (dispatch) => {
+        let response = await authAPI.login(email, password, rememberMe)
+        if (response.data.resultCode === ResultCodeEnum.Success) {
+            dispatch(getAuthUserData())
+        }
     }
 }
 
 export const logout = () => {
-    return (dispatch: Dispatch<ActionsType>) => {
-        authAPI.logout()
-            .then(response => {
-                if (response.data.resultCode === ResultCodeEnum.Success) {
-                    dispatch(setAuthUserData(null, null, null, false))
-                }
-            })
+    return async (dispatch: Dispatch<ActionsType>) => {
+        let response = await authAPI.logout()
+        if (response.data.resultCode === ResultCodeEnum.Success) {
+            dispatch(setAuthUserData(null, null, null, false))
+        }
     }
 }

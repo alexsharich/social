@@ -27,7 +27,8 @@ export type UsersPropsType = MapStateToProps & MapDispatchToProps
 class UsersAPI extends React.Component<UsersPropsType> {
 
     componentDidMount(): void {
-        this.props.getUsersThunkCreator(this.props.currentPage, this.props.pageSize)
+        let {currentPage,pageSize} =this.props
+        this.props.getUsersThunkCreator(currentPage,pageSize)
     }
 
     onPageChanged = (pageNumber: number) => {

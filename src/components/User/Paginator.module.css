@@ -1,0 +1,8 @@
+span {
+    color: white;
+    margin: 3px;
+}
+.selectedPage {
+    color: gold;
+    font-weight: bold;
+}
