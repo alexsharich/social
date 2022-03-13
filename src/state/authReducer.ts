@@ -7,15 +7,15 @@ const SET_USER_DATA = 'AUTH/SET-USER-DATA'
 
 const initialProfileState: UserAuthDataType = {
     id: null,
-    login: null,
     email: null,
+    login: null,
     isAuth: false
 }
 
 export type UserAuthDataType = {
-    id: number | null
-    login: string | null
+    id: number | null | string
     email: string | null
+    login: string | null
     isAuth: boolean
 }
 
@@ -35,11 +35,11 @@ export const authReducer = (state: initialProfileStateType = initialProfileState
     }
 }
 
-export const setAuthUserData = (userId: number | null, email: string | null, login: string | null, isAuth: boolean/* data:UserAuthDataType *//* id: number, login: string, email: string, isAuth: boolean */) => {
+export const setAuthUserData = (id: number | null, email: string | null, login: string | null, isAuth: boolean/* data:UserAuthDataType *//* id: number, login: string, email: string, isAuth: boolean */) => {
     return {
         type: 'AUTH/SET-USER-DATA',
         payload: {
-            userId,
+            id,
             email,
             login,
             isAuth

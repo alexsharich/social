@@ -5,6 +5,8 @@ import MyPostsContainer from './MyPosts/MyPostsContainer';
 import { ProfileUserType } from '../../state/profileReducer';
 
 type ProfilePropsType = {
+  isOwner: any
+  savePhoto: (file: any) => void
   profile: ProfileUserType
   status: string
   updateStatus: (status: string) => void
@@ -13,7 +15,11 @@ type ProfilePropsType = {
 const Profile = (props: ProfilePropsType) => {
   return (
     <div>
-      <ProfileInfo profile={props.profile} status={props.status} updateStatus={props.updateStatus} />
+      <ProfileInfo isOwner={props.isOwner}
+        savePhoto={props.savePhoto}
+        profile={props.profile}
+        status={props.status}
+        updateStatus={props.updateStatus} />
       <MyPostsContainer />
     </div>
   )
