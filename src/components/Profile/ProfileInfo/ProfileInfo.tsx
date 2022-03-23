@@ -1,11 +1,12 @@
 import { profile } from "console";
-import React, { ChangeEvent } from "react";
-import { ProfileUserType } from "../../../state/profileReducer";
+import React, { ChangeEvent, useState } from "react";
+import { ProfileContactsType, ProfileUserType } from "../../../state/profileReducer";
 import { Preloader } from "../../Preloader/Preloader";
 import s from './ProfileInfo.module.css'
 import userPhoto from '../../../assets/images/user.png'
 import { ProfileStatus } from "./ProfileStatus/ProfileStatus";
 import { ProfileStatusWithHooks } from "./ProfileStatus/ProfileStatusWithHooks";
+import { profilePageSelector } from "../../../state/selectors";
 
 type ProfileInfoPropsType = {
     isOwner: any
@@ -16,6 +17,9 @@ type ProfileInfoPropsType = {
 }
 
 const ProfileInfo = ({ profile, updateStatus, status, isOwner, savePhoto }: ProfileInfoPropsType) => {
+
+    let [editMode, setEditMode] = useState<boolean>(false)
+
     if (!profile) {
         return <Preloader />
     }
@@ -25,9 +29,22 @@ const ProfileInfo = ({ profile, updateStatus, status, isOwner, savePhoto }: Prof
             savePhoto(e.target.files[0])
         }
     }
+    const goToEditMode = () => {
+        setEditMode(true)
+    }
 
     return (
-        <div>
+        <div className={s.profileContainer}>
+            <div className={s.user}>
+                {profile.photos && <img className={s.userPhoto} src={profile.photos.small || userPhoto} />}
+                {isOwner && <input type='file' onChange={onMainPhotoSelected} />}
+                {editMode
+                    ? <ProfileDataForm profile={profile} />
+                    : <ProfileData profile={profile} isOwner={isOwner} goToEditMode={goToEditMode} />}
+                <ProfileStatusWithHooks status={status} updateStatus={updateStatus} />
+            </div>
+        </div>
+        /* <div>
             <img src='https://cdn.wallpapersafari.com/40/65/MI0YJw.jpg' width='100%' className={s.profileInfoAva}></img>
             <div className={s.profileContainer}>
                 <div className={s.user}>
@@ -58,6 +75,67 @@ const ProfileInfo = ({ profile, updateStatus, status, isOwner, savePhoto }: Prof
                     </div>
                 </div>
             </div>
+        </div> */
+    )
+}
+
+
+
+type ProfileDataType = {
+    profile: ProfileUserType
+    isOwner?: boolean
+    goToEditMode?: () => void
+}
+
+const ProfileData = ({ profile, isOwner, goToEditMode }: ProfileDataType) => {
+    return (
+        <div >
+            {isOwner && <div><button onClick={goToEditMode}>Edit Profile</button></div>}
+            <div>
+                <b>Full name</b> : {profile.fullName}
+            </div>
+            <div>
+                <b>Looking for a job</b> : {profile.lookingForAJob ? 'yes' : 'no'}
+            </div>
+            {
+                profile.lookingForAJob &&
+                <div>
+                    <b>My professional skills </b> : {profile.lookingForAJobDescription}
+                </div>
+            }
+            <div>
+                <b>About me </b> : {profile.aboutMe}
+            </div>
+            <div>
+                <b>Contacts </b> :
+                <div className={s.contactsList} >
+                    {profile.contacts && Object.keys(profile.contacts).map(key => {
+                        //@ts-ignore
+                        return <Contact key={key} contactTitle={key} contactValue={profile.contacts[key]} />
+                    })}
+                </div>
+            </div>
+        </div>
+    )
+}
+const ProfileDataForm = ({ profile }: ProfileDataType) => {
+    return (
+        <div >
+            form
+        </div>
+    )
+}
+type ContactPropsType = {
+    contactTitle?: any
+    contactValue?: string
+}
+
+const Contact = (props: ContactPropsType) => {
+    return (
+        <div>
+
+            <b>{props.contactTitle}</b> {props.contactValue}
+
         </div>
     )
 }
