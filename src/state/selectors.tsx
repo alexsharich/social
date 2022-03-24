@@ -35,6 +35,9 @@ export const profilePageSelector = (state: AppStateType): PostsType => {
 export const isAuthSelector = (state: AppStateType): boolean => {
     return state.auth.isAuth
 }
+export const captchaUrl = (state:AppStateType):null|string=>{
+    return state.auth.captchaUrl
+}
 export const authSelector = (state: AppStateType): UserAuthDataType => {
     return state.auth
 }
