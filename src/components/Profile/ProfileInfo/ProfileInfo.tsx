@@ -7,6 +7,7 @@ import userPhoto from '../../../assets/images/user.png'
 import { ProfileStatus } from "./ProfileStatus/ProfileStatus";
 import { ProfileStatusWithHooks } from "./ProfileStatus/ProfileStatusWithHooks";
 import { profilePageSelector } from "../../../state/selectors";
+import { ProfileDataForm, ProfileDataFormReduxForm, ProfileDataFormValuesType } from "./ProfileStatus/ProfileDataform";
 
 type ProfileInfoPropsType = {
     isOwner: any
@@ -14,9 +15,10 @@ type ProfileInfoPropsType = {
     profile: ProfileUserType
     status: string
     updateStatus: (status: string) => void
+    saveProfile: (formData: ProfileDataFormValuesType) => void
 }
 
-const ProfileInfo = ({ profile, updateStatus, status, isOwner, savePhoto }: ProfileInfoPropsType) => {
+const ProfileInfo = ({ profile, updateStatus, status, isOwner, savePhoto, saveProfile }: ProfileInfoPropsType) => {
 
     let [editMode, setEditMode] = useState<boolean>(false)
 
@@ -32,6 +34,10 @@ const ProfileInfo = ({ profile, updateStatus, status, isOwner, savePhoto }: Prof
     const goToEditMode = () => {
         setEditMode(true)
     }
+    const onSubmit = (formData: ProfileDataFormValuesType) => {
+        saveProfile(formData)
+        setEditMode(false)
+    }
 
     return (
         <div className={s.profileContainer}>
@@ -39,7 +45,7 @@ const ProfileInfo = ({ profile, updateStatus, status, isOwner, savePhoto }: Prof
                 {profile.photos && <img className={s.userPhoto} src={profile.photos.small || userPhoto} />}
                 {isOwner && <input type='file' onChange={onMainPhotoSelected} />}
                 {editMode
-                    ? <ProfileDataForm profile={profile} />
+                    ? <ProfileDataFormReduxForm initialValues={profile} profile={profile} onSubmit={onSubmit} />
                     : <ProfileData profile={profile} isOwner={isOwner} goToEditMode={goToEditMode} />}
                 <ProfileStatusWithHooks status={status} updateStatus={updateStatus} />
             </div>
@@ -81,7 +87,7 @@ const ProfileInfo = ({ profile, updateStatus, status, isOwner, savePhoto }: Prof
 
 
 
-type ProfileDataType = {
+export type ProfileDataType = {
     profile: ProfileUserType
     isOwner?: boolean
     goToEditMode?: () => void
@@ -118,13 +124,7 @@ const ProfileData = ({ profile, isOwner, goToEditMode }: ProfileDataType) => {
         </div>
     )
 }
-const ProfileDataForm = ({ profile }: ProfileDataType) => {
-    return (
-        <div >
-            form
-        </div>
-    )
-}
+
 type ContactPropsType = {
     contactTitle?: any
     contactValue?: string

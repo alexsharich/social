@@ -1,5 +1,6 @@
 import { Dispatch } from "redux"
 import { profileAPI, ResultCodeEnum, usersAPI } from "../api/api"
+import { AppStateType } from "./redux-store"
 
 const ADD_POST = 'PROFILE/ADD-POST'
 const SET_USER_PROFILE = 'PROFILE/SET-USER-PROFILE'
@@ -143,6 +144,16 @@ export const savePhoto = (file: any) => {
         let response = await profileAPI.savePhoto(file)
         if (response.data.resultCode === ResultCodeEnum.Success) {
             dispatch(savePhotoAC(response.data.data.photos))
+        }
+    }
+}
+export const saveProfile = (profile: any) => {
+    return async (dispatch: any,getState:any) => {
+        const userId = getState().auth.id
+        let response = await profileAPI.saveProfile(profile)
+        if (response.data.resultCode === ResultCodeEnum.Success) {
+         
+            dispatch(getUserProfile(userId))
         }
     }
 }
