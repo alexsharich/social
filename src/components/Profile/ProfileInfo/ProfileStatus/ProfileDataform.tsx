@@ -1,15 +1,16 @@
 import React from 'react'
 import { InjectedFormProps, reduxForm } from 'redux-form'
-import { ProfileUserType } from '../../../../state/profileReducer'
+import { ProfileContactsType, ProfileUserType } from '../../../../state/profileReducer'
 import { createField, Input, Textarea } from '../../../FormsControls/FormControls'
-import { ProfileDataType } from '../ProfileInfo'
 import s from '../ProfileInfo.module.css'
 
+
 export type ProfileDataFormValuesType = {
-    fullName: string 
-    lookingForAJob: string 
-    lookingForAJobDescription: string 
-    aboutMe: string 
+    fullName: string
+    lookingForAJob: string
+    lookingForAJobDescription: string
+    aboutMe: string
+    contacts:ProfileContactsType
 }
 type ProfileDataFormOwnProps = {
     profile: ProfileUserType
@@ -17,10 +18,11 @@ type ProfileDataFormOwnProps = {
 }
 
 
-export const ProfileDataForm: React.FC<InjectedFormProps<ProfileDataFormValuesType, ProfileDataFormOwnProps> & ProfileDataFormOwnProps> = ({ handleSubmit }) => {
+export const ProfileDataForm: React.FC<InjectedFormProps<ProfileDataFormValuesType, ProfileDataFormOwnProps> & ProfileDataFormOwnProps> = ({ handleSubmit,error, profile }) => {
     return (
         <form onSubmit={handleSubmit} >
             <div><button >Save</button></div>
+            {error && <div className={s.formSummaryError}>{error}</div>}
             <div>
                 <b>Full name</b> : {createField('Full name', 'fullName', [], Input)}
             </div>
@@ -35,15 +37,17 @@ export const ProfileDataForm: React.FC<InjectedFormProps<ProfileDataFormValuesTy
             </div>
             <div>
                 <b>Contacts </b> :
-                {/*  <div className={s.contactsList} >
+                <div className={s.contacts} >
                     {profile.contacts && Object.keys(profile.contacts).map(key => {
-                        //@ts-ignore
-                        return <Contact key={key} contactTitle={key} contactValue={profile.contacts[key]} />
+
+                        return <div key={key}>
+                            <b>{key} :{createField(key, 'contacts.' + key, [], Input)}</b>
+                        </div>
                     })}
-                </div> */}
+                </div>
             </div>
         </form>
     )
 }
 
-export const ProfileDataFormReduxForm = reduxForm<ProfileDataFormValuesType, ProfileDataFormOwnProps>({ form: 'edit-form' })(ProfileDataForm)
+export const ProfileDataFormReduxForm = reduxForm<ProfileDataFormValuesType, ProfileDataFormOwnProps>({ form: 'edit-profile' })(ProfileDataForm)

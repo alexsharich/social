@@ -1,4 +1,5 @@
 import { Dispatch } from "redux"
+import { stopSubmit } from "redux-form"
 import { profileAPI, ResultCodeEnum, usersAPI } from "../api/api"
 import { AppStateType } from "./redux-store"
 
@@ -148,12 +149,15 @@ export const savePhoto = (file: any) => {
     }
 }
 export const saveProfile = (profile: any) => {
-    return async (dispatch: any,getState:any) => {
+    return async (dispatch: any, getState: any) => {
         const userId = getState().auth.id
         let response = await profileAPI.saveProfile(profile)
         if (response.data.resultCode === ResultCodeEnum.Success) {
-         
+
             dispatch(getUserProfile(userId))
+        } else {
+             dispatch(stopSubmit('edit-profile', {_error: response.data.messages[0] }))
+             return Promise.reject(response.data.messages[0])
         }
     }
 }
