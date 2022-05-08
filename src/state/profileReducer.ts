@@ -98,7 +98,6 @@ export const setStatusAC = (status: string) => {
         status: status
     } as const
 }
-
 export const setUserProfile = (profile: any) => {
     return {
         type: 'PROFILE/SET-USER-PROFILE',
@@ -117,21 +116,18 @@ export const savePhotoAC = (photos: any) => {
         photos: photos
     } as const
 }
-
 export const getUserProfile = (userId: number) => {
     return async (dispatch: Dispatch<ActionsType>) => {
         let response = await usersAPI.getProfile(userId)
         dispatch(setUserProfile(response.data))
     }
 }
-
 export const getStatus = (userId: number) => {
     return async (dispatch: Dispatch<ActionsType>) => {
         let response = await profileAPI.getStatus(userId)
         dispatch(setStatusAC(response.data))
     }
 }
-
 export const updateStatus = (status: string) => {
     return async (dispatch: Dispatch<ActionsType>) => {
         let response = await profileAPI.updateStatus(status)

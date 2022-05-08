@@ -36,8 +36,6 @@ class ProfileContainer extends React.Component<PropsType> {
   refreshProfile() {
     let userId = this.props.match.params.userId
     if (!userId) {
-      //userId = (this.props.profile.userId).toString()
-
       userId = '14497'
       if (!userId) {
         this.props.history.push('/login')
@@ -65,7 +63,6 @@ class ProfileContainer extends React.Component<PropsType> {
         status={this.props.status}
         updateStatus={this.props.updateStatus} 
         saveProfile = { this.props.saveProfile }/>
-
     )
   }
 }

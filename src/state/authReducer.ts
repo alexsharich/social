@@ -23,7 +23,6 @@ export type UserAuthDataType = {
     captchaUrl: string | null
 }
 
-
 type ActionsType = ReturnType<typeof setAuthUserData> | ReturnType<typeof getCaptchaUrlSuccess>
 
 export type initialProfileStateType = typeof initialProfileState
@@ -90,7 +89,6 @@ export const getCaptchaUrlThunkCreator = (): ThunkAction<void, AppStateType, unk
         dispatch(getCaptchaUrlSuccess(captchaUrl))
     }
 }
-
 export const logout = () => {
     return async (dispatch: Dispatch<ActionsType>) => {
         let response = await authAPI.logout()

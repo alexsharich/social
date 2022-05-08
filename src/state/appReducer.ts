@@ -8,7 +8,6 @@ const initialState: initialStateType = {
 type initialStateType = {
     initialized: boolean
 }
-
 type ActionsType = ReturnType<typeof initializedSuccess>
 
 export const appReducer = (state: initialStateType = initialState, action: ActionsType): initialStateType => {

@@ -4,7 +4,6 @@ import { ProfileContactsType, ProfileUserType } from '../../../../state/profileR
 import { createField, Input, Textarea } from '../../../FormsControls/FormControls'
 import s from '../ProfileInfo.module.css'
 
-
 export type ProfileDataFormValuesType = {
     fullName: string
     lookingForAJob: string
@@ -16,7 +15,6 @@ type ProfileDataFormOwnProps = {
     profile: ProfileUserType
     initialValues: any
 }
-
 
 export const ProfileDataForm: React.FC<InjectedFormProps<ProfileDataFormValuesType, ProfileDataFormOwnProps> & ProfileDataFormOwnProps> = ({ handleSubmit,error, profile }) => {
     return (

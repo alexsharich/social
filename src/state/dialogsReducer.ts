@@ -8,7 +8,6 @@ type DialogType = {
     id: number
     name: string
 }
-
 type ActionsType = ReturnType<typeof sendNewDialogTextAC>
 
 const initialDialogsState = {
